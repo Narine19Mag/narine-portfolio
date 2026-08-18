@@ -313,8 +313,13 @@ html.js-motion .px-img{
   transition:--ps .8s var(--ease);
   will-change:transform;
 }
-/* keep the existing hover-zoom on work rows, composed with parallax */
-html.js-motion .work-row:hover .wr-media .px-img{ --ps:1.18; }
+/* keep the existing hover-zoom on work rows, composed with parallax.
+   The legacy `.work-row:hover .wr-media img{transform:scale(1.04)}` rule
+   out-ranks .px-img, so it must be restated here or the image jumps on hover. */
+html.js-motion .work-row:hover .wr-media img.px-img{
+  --ps:1.18;
+  transform:translate3d(0,var(--py),0) scale(var(--ps));
+}
 
 /* ---------- interactive particle wordmark ---------- */
 .hero-particles{ position:relative; }
