@@ -337,3 +337,46 @@ html.js-motion .work-row:hover .wr-media img.px-img{
   .masthead-name.is-particled{ color:var(--text) !important; }
   .hero-particles canvas{ display:none !important; }
 }
+
+/* ---------- work-row media: wipe-in, hover stack, cursor tilt ---------- */
+html.js-motion .work-row .wr-media{
+  position:relative;
+  clip-path:inset(0 0 100% 0 round 2px);
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:clip-path 1.15s var(--ease) .08s, transform .55s var(--ease);
+}
+html.js-motion .work-row .wr-media.wr-in{ clip-path:inset(0 0 0 0 round 2px); }
+
+html.js-motion .wr-layer{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  clip-path:inset(100% 0 0 0);
+  transition:clip-path .8s var(--ease);
+}
+html.js-motion .wr-layer.on{ clip-path:inset(0 0 0 0); }
+html.js-motion .wr-layer.out{
+  clip-path:inset(0 0 0 0);
+  opacity:0;
+  transition:opacity .4s var(--ease);
+}
+
+/* stack counter — picks up the [ 01 ] language used elsewhere on the page */
+html.js-motion .wr-count{
+  position:absolute; right:12px; bottom:12px; z-index:60;
+  font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.1em;
+  color:var(--accent);
+  background:rgba(10,10,11,.62);
+  backdrop-filter:blur(6px);
+  padding:5px 10px; border-radius:100px;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  pointer-events:none;
+}
+html.js-motion .work-row:hover .wr-count{ opacity:1; transform:translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  html.js-motion .work-row .wr-media{ clip-path:none !important; transform:none !important; }
+  html.js-motion .wr-layer{ display:none !important; }
+  html.js-motion .wr-count{ display:none !important; }
+}
