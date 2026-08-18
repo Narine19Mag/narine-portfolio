@@ -264,8 +264,9 @@ html:not(.js-motion) .mk-i{
 .work-row .wr-media{
   aspect-ratio:3/4; overflow:hidden; border-radius:2px; background:#0d0d0f; max-width:503px;
 }
-.work-row .wr-media img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
-.work-row:hover .wr-media img{ transform:scale(1.04); }
+/* Reference site (webxdemo artist1) keeps this image completely static:
+   no hover zoom, no scroll transform. Matched deliberately. */
+.work-row .wr-media img{ width:100%; height:100%; object-fit:cover; }
 .work-row .wr-meta{ text-align:right; font-family:'Space Grotesk',sans-serif; }
 .work-row .wr-meta .wr-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-faint); margin-bottom:6px; }
 .work-row .wr-meta .wr-type{ font-size:14px; color:var(--text-dim); }
@@ -313,13 +314,6 @@ html.js-motion .px-img{
   transition:--ps .8s var(--ease);
   will-change:transform;
 }
-/* keep the existing hover-zoom on work rows, composed with parallax.
-   The legacy `.work-row:hover .wr-media img{transform:scale(1.04)}` rule
-   out-ranks .px-img, so it must be restated here or the image jumps on hover. */
-html.js-motion .work-row:hover .wr-media img.px-img{
-  --ps:1.18;
-  transform:translate3d(0,var(--py),0) scale(var(--ps));
-}
 
 /* ---------- interactive particle wordmark ---------- */
 .hero-particles{ position:relative; }
@@ -338,48 +332,6 @@ html.js-motion .work-row:hover .wr-media img.px-img{
   .hero-particles canvas{ display:none !important; }
 }
 
-/* ---------- work-row media: wipe-in, hover stack, cursor tilt ---------- */
-html.js-motion .work-row .wr-media{
-  position:relative;
-  clip-path:inset(0 0 100% 0 round 2px);
-  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
-  transition:clip-path 1.15s var(--ease) .08s, transform .55s var(--ease);
-}
-html.js-motion .work-row .wr-media.wr-in{ clip-path:inset(0 0 0 0 round 2px); }
-
-html.js-motion .wr-layer{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-  clip-path:inset(100% 0 0 0);
-  transition:clip-path .8s var(--ease);
-}
-html.js-motion .wr-layer.on{ clip-path:inset(0 0 0 0); }
-html.js-motion .wr-layer.out{
-  clip-path:inset(0 0 0 0);
-  opacity:0;
-  transition:opacity .4s var(--ease);
-}
-
-/* stack counter — picks up the [ 01 ] language used elsewhere on the page */
-html.js-motion .wr-count{
-  position:absolute; right:12px; bottom:12px; z-index:60;
-  font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.1em;
-  color:var(--accent);
-  background:rgba(10,10,11,.62);
-  backdrop-filter:blur(6px);
-  padding:5px 10px; border-radius:100px;
-  opacity:0; transform:translateY(6px);
-  transition:opacity .35s var(--ease), transform .35s var(--ease);
-  pointer-events:none;
-}
-html.js-motion .work-row:hover .wr-count{ opacity:1; transform:translateY(0); }
-
-@media (prefers-reduced-motion: reduce){
-  html.js-motion .work-row .wr-media{ clip-path:none !important; transform:none !important; }
-  html.js-motion .wr-layer{ display:none !important; }
-  html.js-motion .wr-count{ display:none !important; }
-}
 
 /* ============================================
    RESPONSIVE LAYOUT PRIMITIVES

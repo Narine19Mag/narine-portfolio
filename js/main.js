@@ -66,7 +66,6 @@
       safe('failsafe', function () {
         $$('.reveal, .reveal-stagger').forEach(function (el) { el.classList.add('in'); });
         $$('[data-mask]').forEach(function (el) { el.classList.add('mask-in'); });
-        $$('.wr-media').forEach(function (el) { el.classList.add('wr-in'); });
       });
     }, 3000);
 
@@ -261,8 +260,9 @@
     safe('parallax', function () {
       if (!motionOK || !fine) return;
 
+      // NOTE: '.work-row .wr-media' is deliberately excluded — the reference
+      // site keeps those five images completely static.
       var SEL = [
-        '.work-row .wr-media',
         '.bnd-hero-media',
         '.pj-hero-media',
         '.mkt-hero-img',
@@ -310,131 +310,6 @@
           // set on the BOX so every stacked layer inside inherits the offset
           it.box.style.setProperty('--py', it.cur.toFixed(2) + 'px');
         }
-      });
-    });
-
-    // =========================================================
-    // 9b. WORK-ROW MEDIA — the five hero thumbnails on the homepage
-    //  · wipe-in from the bottom as the row scrolls into view
-    //  · hover cycles through real work from that project
-    //  · frame tilts toward the cursor in 3D
-    // =========================================================
-    safe('workMedia', function () {
-      var boxes = $$('.work-row .wr-media');
-      if (!boxes.length) return;
-
-      // --- entrance wipe (runs on every device) ---
-      if ('IntersectionObserver' in window && motionOK) {
-        var wio = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            if (en.isIntersecting) { en.target.classList.add('wr-in'); wio.unobserve(en.target); }
-          });
-        }, { threshold: 0.2 });
-        boxes.forEach(function (b) { wio.observe(b); });
-      } else {
-        boxes.forEach(function (b) { b.classList.add('wr-in'); });
-      }
-
-      // --- cycling + tilt are desktop-pointer only ---
-      if (!motionOK || !fine) return;
-
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-      boxes.forEach(function (box) {
-        var list = (box.getAttribute('data-stack') || '')
-          .split(',')
-          .map(function (s) { return s.trim(); })
-          .filter(Boolean);
-
-        var row = box.closest ? box.closest('.work-row') : null;
-        if (!row) row = box.parentNode;
-
-        // ---- tilt ----
-        row.addEventListener('mousemove', function (e) {
-          var r = box.getBoundingClientRect();
-          if (!r.width || !r.height) return;
-          var cx = clamp((e.clientX - r.left) / r.width - 0.5, -0.5, 0.5);
-          var cy = clamp((e.clientY - r.top) / r.height - 0.5, -0.5, 0.5);
-          box.style.setProperty('--ry', (cx * 7).toFixed(2) + 'deg');
-          box.style.setProperty('--rx', (-cy * 7).toFixed(2) + 'deg');
-        }, { passive: true });
-
-        row.addEventListener('mouseleave', function () {
-          box.style.setProperty('--rx', '0deg');
-          box.style.setProperty('--ry', '0deg');
-        });
-
-        if (!list.length) return;
-
-        // ---- counter badge ----
-        var badge = document.createElement('span');
-        badge.className = 'wr-count';
-        badge.setAttribute('aria-hidden', 'true');
-        badge.textContent = '01/' + pad(list.length + 1);
-        box.appendChild(badge);
-
-        // ---- layers (built on first need) ----
-        var layers = [];
-        function ensureLayers() {
-          if (layers.length) return;
-          for (var i = 0; i < list.length; i++) {
-            var im = document.createElement('img');
-            im.className = 'wr-layer px-img';
-            im.alt = '';
-            im.setAttribute('aria-hidden', 'true');
-            im.decoding = 'async';
-            im.src = list[i];
-            box.appendChild(im);
-            layers.push(im);
-          }
-        }
-
-        var idx = -1, z = 1, timer = null, clearTimer = null;
-
-        function show(n) {
-          var el = layers[n];
-          if (!el) return;
-          el.classList.remove('out');
-          el.style.zIndex = ++z;
-          el.classList.add('on');
-          badge.textContent = pad(n + 2) + '/' + pad(list.length + 1);
-        }
-
-        function step() {
-          idx = (idx + 1) % layers.length;
-          show(idx);
-          timer = setTimeout(step, 1050);
-        }
-
-        row.addEventListener('mouseenter', function () {
-          ensureLayers();
-          clearTimeout(clearTimer);
-          clearTimeout(timer);
-          idx = -1;
-          timer = setTimeout(step, 130);
-        });
-
-        row.addEventListener('mouseleave', function () {
-          clearTimeout(timer);
-          timer = null;
-          layers.forEach(function (l) {
-            if (l.classList.contains('on')) l.classList.add('out');
-          });
-          badge.textContent = '01/' + pad(list.length + 1);
-          clearTimer = setTimeout(function () {
-            layers.forEach(function (l) { l.classList.remove('on'); l.classList.remove('out'); });
-            z = 1;
-          }, 430);
-        });
-
-        // warm the first frame of each stack once the page is idle,
-        // so the very first hover has no loading hitch
-        function warm() {
-          var pre = new Image();
-          pre.src = list[0];
-        }
-        if (window.requestIdleCallback) window.requestIdleCallback(warm, { timeout: 4000 });
-        else setTimeout(warm, 2500);
       });
     });
 
