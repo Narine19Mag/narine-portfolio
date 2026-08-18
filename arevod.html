@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival Arevod — Narine Maghakyan</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .pj-block{ margin-top:64px; }
+  .pj-block:first-child{ margin-top:0; }
+  .pj-hero{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .pj-hero h2{ font-size:clamp(24px,3vw,36px); max-width:560px; }
+  .pj-hero p{ color:var(--text-dim); font-size:16px; line-height:1.7; margin-top:18px; max-width:520px; font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  .pj-hero img{ width:100%; border-radius:4px; display:block; background:#111; }
+  .pj-support{ display:grid; gap:16px; margin-top:32px; }
+  .pj-support img{ width:100%; border-radius:4px; display:block; background:#111; }
+  .pj-support-3{ grid-template-columns:1fr 1fr 1fr; }
+  .pj-support-2{ grid-template-columns:1fr 1fr; }
+  .pj-support-wide{ width:100%; border-radius:4px; display:block; margin-top:32px; background:#111; }
+  .pj-sub-label{ font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-faint); margin:48px 0 16px; font-family:'Space Grotesk',sans-serif; }
+  .pj-photogrid{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-flow:dense; gap:16px; }
+  .pj-photogrid img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; display:block; background:#111; }
+  .pj-photogrid .pj-wide{ grid-column:span 2; aspect-ratio:3/2; }
+  .pj-facts{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:40px; padding-top:32px; border-top:1px solid var(--line); }
+  .pj-facts div{ font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin-bottom:8px; font-family:'Space Grotesk',sans-serif; }
+  .pj-facts strong{ display:block; font-size:18px; color:var(--text); font-weight:500; text-transform:none; letter-spacing:0; }
+  @media(max-width:900px){
+    .pj-hero{ grid-template-columns:1fr; }
+    .pj-hero .pj-hero-media{ order:-1; }
+    .pj-support-3,.pj-support-2{ grid-template-columns:1fr; }
+    .pj-photogrid{ grid-template-columns:repeat(2,1fr); }
+    .pj-photogrid .pj-wide{ grid-column:span 2; }
+    .pj-facts{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">NARINE<span>.</span>M</a>
+  <div class="nav-links">
+    <a href="index.html">Work</a>
+    <a href="about.html" >About</a>
+    <a href="mailto:narinemaghakyan@gmail.com">Contact</a>
+  </div>
+  <button class="nav-toggle">Menu</button>
+</nav>
+
+<header style="padding-top:160px; padding-bottom:40px;">
+  <div class="wrap">
+    <p class="reveal in" style="text-transform:uppercase; letter-spacing:.14em; font-size:13px; color:var(--text-dim); margin-bottom:20px;">Event Branding &amp; Art Direction</p>
+    <h1 class="reveal in" style="font-size:clamp(36px,7vw,88px); max-width:900px;">Festival Arevod</h1>
+    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:640px; margin-top:20px;">Armenia's first large-scale festival uniting art, music and food — "Where the sun meets the air, and you meet yourself." Full identity and campaign system for the inaugural edition, from wordmark to ticketing to on-the-ground art direction.</p>
+
+    <div class="pj-facts reveal in">
+      <div>Date<strong>Aug 9–10, 2025</strong></div>
+      <div>Venue<strong>Yeghvard, Sky Club</strong></div>
+      <div>Guests<strong>10,000+</strong></div>
+      <div>Format<strong>Open-air festival</strong></div>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+
+    <div class="pj-block reveal in">
+      <div class="pj-hero">
+        <div>
+          <h2>A sunset-gradient identity built for Armenia's first art, music &amp; food festival.</h2>
+          <p>Full identity and campaign system for the inaugural edition: wordmark, sunset-gradient visual language, artist announcements, ticketing campaign, a bus-booking micro-site, and on-the-ground art direction for a 10,000+ guest open-air event in Yeghvard.</p>
+        </div>
+        <div class="pj-hero-media"><img src="images/arevod-photo-aerial-sunset.jpg" alt="Aerial view of Festival Arevod at sunset — crowd, geodesic domes and main stage"></div>
+      </div>
+
+      <div class="pj-sub-label">Brand Identity</div>
+      <div class="pj-support pj-support-2">
+        <img src="images/arevod-wordmark.jpg" alt="AREVOD by monK wordmark and logo lockup">
+        <img src="images/arevod-date-announce.jpg" alt="Festival Arevod 'August 9' save-the-date story graphic">
+      </div>
+
+      <div class="pj-sub-label">Campaign &amp; Artist Announcements</div>
+      <div class="pj-support pj-support-3">
+        <img src="images/arevod-artist-leo.jpg" alt="LEO artist announcement poster, Hangar Stage">
+        <img src="images/arevod-artist-socko.jpg" alt="Socko artist announcement poster, Hangar Stage">
+        <img src="images/arevod-artist-gorsujyan.jpg" alt="Gor Sujyan artist announcement poster, Art Stage">
+      </div>
+      <div class="pj-support pj-support-2" style="margin-top:16px;">
+        <img src="images/arevod-teaser-guessloc.jpg" alt="Guess the location contest teaser post">
+        <img src="images/arevod-teaser-reflection.jpg" alt="'Arevod is a reflection of each of us' campaign teaser">
+      </div>
+      <img class="pj-support-wide" src="images/arevod-quote-post.jpg" alt="'The music rises weaving through the crowd' mood post">
+
+      <div class="pj-sub-label">Ticketing &amp; Countdown</div>
+      <div class="pj-support pj-support-3">
+        <img src="images/arevod-ticket-pricing.jpg" alt="Ticket pricing story — early bird, standard and entrance rates">
+        <img src="images/arevod-tickets-live.jpg" alt="'Early bird tickets live now' announcement story">
+        <img src="images/arevod-countdown-1day.jpg" alt="'1 day left' countdown story">
+      </div>
+
+      <div class="pj-sub-label">Festival Bus — Booking Micro-site</div>
+      <div class="pj-support pj-support-3">
+        <img src="images/arevod-bus-landing.jpg" alt="Festival bus booking landing page mockup">
+        <img src="images/arevod-bus-form.jpg" alt="Festival bus booking form mockup">
+        <img src="images/arevod-bus-map.jpg" alt="Festival bus route map, Matenadaran to Yeghvard Sky Club">
+      </div>
+
+      <div class="pj-sub-label">On the Ground</div>
+      <div class="pj-photogrid">
+        <img class="pj-wide" src="images/arevod-photo-sign-sunset.jpg" alt="AREVOD entrance sign silhouetted against a dramatic sunset">
+        <img src="images/arevod-photo-rapper-stage.jpg" alt="Performer on stage in pink smoke">
+        <img src="images/arevod-photo-dome-crowd.jpg" alt="Crowd gathered around the geodesic DJ dome">
+        <img src="images/arevod-photo-kite.jpg" alt="Festival-goer flying a fish-shaped kite at sunset">
+        <img src="images/arevod-photo-wristband.jpg" alt="Close-up of hands fastening an AREVOD wristband">
+        <img src="images/arevod-photo-costume.jpg" alt="Festival-goers in handmade art costumes and masks">
+        <img src="images/arevod-photo-dj-bw.jpg" alt="Black and white portrait of a DJ under laser lights">
+        <img class="pj-wide" src="images/arevod-photo-vwvan.jpg" alt="Vintage VW van parked by the pastel geodesic market domes">
+        <img src="images/arevod-photo-kids-workshop.jpg" alt="Children at a festival creative workshop">
+        <img src="images/arevod-photo-stage-night.jpg" alt="Main stage lit red at night with sacred-geometry visuals">
+        <img src="images/arevod-photo-art-sculpture.jpg" alt="Recycled-materials sculpture installation at dusk">
+        <img class="pj-wide" src="images/arevod-photo-sunset-walk.jpg" alt="Crowd walking toward the Tashir stage at golden-hour sunset">
+        <img src="images/arevod-photo-dj-portrait.jpg" alt="DJ setting up on a laptop against a clear blue sky">
+        <img src="images/arevod-photo-cocacola.jpg" alt="Coca-Cola branded activation tunnel with festival-goers">
+        <img src="images/arevod-photo-tunnel-blue.jpg" alt="Blue-lit laser tunnel with the crowd facing the DJ booth">
+        <img src="images/arevod-photo-tunnel-pink.jpg" alt="Pink and purple laser tunnel packed with festival-goers">
+        <img class="pj-wide" src="images/arevod-photo-aerial-day.jpg" alt="Aerial daytime view of the crowd and AREVOD dome entrance">
+        <img src="images/arevod-photo-sign-partners.jpg" alt="AREVOD sign above the festival partners and sponsors board">
+      </div>
+    </div>
+
+    <div class="reveal in" style="margin-top:90px;">
+      <a href="index.html" class="btn cursor-hover">← Back to Work</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top reveal in">
+      <h2>Open to new projects and roles — let's talk.</h2>
+      <a href="mailto:narinemaghakyan@gmail.com" class="btn btn-solid cursor-hover">narinemaghakyan@gmail.com</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Narine Maghakyan</span>
+      <div class="footer-socials">
+        <a href="https://www.behance.net/narinemaghakyann" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/narine-maghakyan-73769a1a3" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:narinemaghakyan@gmail.com">Email</a>
+      </div>
+      <span>Yerevan, Armenia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

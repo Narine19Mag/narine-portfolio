@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreedX — Brand &amp; Product System | Narine Maghakyan</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  :root{ --fx-purple:#7c3aed; --fx-purple-dim:#4c1d95; --fx-bg:#0c0a14; }
+  .fx-swatch{ aspect-ratio:1; border-radius:6px; display:flex; align-items:flex-end; padding:10px; font-size:11px; font-family:'Space Grotesk',sans-serif; }
+  .fx-card{ background:#131019; border:1px solid rgba(124,58,237,.25); border-radius:10px; padding:28px; }
+  .fx-phone{ background:#0f0c17; border:1px solid rgba(124,58,237,.3); border-radius:22px; padding:18px; aspect-ratio:9/16; display:flex; flex-direction:column; gap:10px; }
+
+  .fx-ui-group{ margin-top:40px; }
+  .fx-ui-group:first-child{ margin-top:0; }
+  .fx-ui-label{ font-size:11px; color:#8b7fae; text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
+  .fx-ui-row{ display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
+  .fx-ui-row img{ width:280px; max-width:100%; border-radius:16px; border:1px solid rgba(124,58,237,.3); display:block; }
+  @media(max-width:900px){ .fx-ui-row img{ width:220px; } }
+  @media(max-width:560px){ .fx-ui-row img{ width:44vw; } }
+
+  .fx-campaign-hero{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .fx-campaign-hero img,.fx-campaign-square img{ width:100%; border-radius:12px; display:block; border:1px solid rgba(124,58,237,.25); }
+  .fx-campaign-square{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+  .fx-social-strip{ display:flex; gap:10px; overflow-x:auto; padding-bottom:14px; scrollbar-width:thin; }
+  .fx-social-strip img{ height:320px; width:auto; border-radius:10px; flex-shrink:0; border:1px solid rgba(124,58,237,.25); }
+  @media(max-width:900px){ .fx-campaign-hero,.fx-campaign-square{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body style="background:var(--fx-bg);">
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">NARINE<span>.</span>M</a>
+  <div class="nav-links">
+    <a href="index.html">Work</a>
+    <a href="about.html" >About</a>
+    <a href="mailto:narinemaghakyan@gmail.com">Contact</a>
+  </div>
+  <button class="nav-toggle">Menu</button>
+</nav>
+
+<header style="min-height:92vh; display:flex; flex-direction:column; justify-content:center; padding-top:120px; position:relative; overflow:hidden;">
+  <div style="position:absolute; top:-20%; right:-10%; width:60vw; height:60vw; background:radial-gradient(circle, rgba(124,58,237,.35), transparent 65%); filter:blur(40px); pointer-events:none;"></div>
+  <div class="wrap" style="position:relative;">
+    <img src="https://cms-v2-beta.freedx.am/uploads/logo/light-logo.svg" alt="FreedX" class="reveal in" style="height:38px; margin-bottom:36px;">
+    <h1 class="reveal in" style="font-size:clamp(38px,7vw,96px); max-width:1100px;">Brand system &amp; product design for a licensed crypto exchange.</h1>
+    <p class="reveal in" style="color:#b9aee0; font-size:18px; max-width:640px; margin-top:28px;">
+      FreedX is a regulated Digital Asset Service Provider (DASP) built for spot trading, perpetual futures, instant conversion and referral-driven growth. I led the visual identity, a full design-token system, and product UI across onboarding, KYC, wallet and error states.
+    </p>
+    <div class="reveal in" style="display:flex; gap:40px; flex-wrap:wrap; margin-top:56px;">
+      <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">154</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">Design tokens</div></div>
+      <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">10</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">Color ramps</div></div>
+      <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">3</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">Languages — EN / ES / RU</div></div>
+      <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">$273B</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">LATAM market sized in pitch deck</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== OVERVIEW ===== -->
+<section>
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1.5fr; gap:60px;">
+    <div class="section-label reveal">The Brand</div>
+    <div class="reveal">
+      <h2 style="font-size:clamp(26px,3.4vw,40px); max-width:720px;">"The crypto exchange that's actually on your side."</h2>
+      <p style="color:#b9aee0; margin-top:22px; font-size:16px; line-height:1.7; max-width:680px;">
+        FreedX positions itself as simple enough for a first trade, powerful enough for the next thousand — spot trading, perpetual futures with isolated margin, instant convert, and a referral program paying up to 40% commission. It's licensed and regulated as a DASP in El Salvador with enforced KYC/AML compliance, so the brand had to read as trustworthy and technically credible while staying approachable for beginners.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;">
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Spot Trading</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Perpetual Futures</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Instant Convert</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Refer &amp; Earn</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Licensed DASP · El Salvador</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BRAND & VISUAL IDENTITY ===== -->
+<section style="border-top:1px solid rgba(124,58,237,.2);">
+  <div class="wrap">
+    <div class="section-label reveal">01 — Brand &amp; Visual Identity</div>
+    <h2 class="reveal" style="font-size:clamp(26px,3.4vw,40px); max-width:760px;">A full identity system: logo suite, exclusion zones, typography and pattern language.</h2>
+
+    <div class="reveal-stagger" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px;">
+      <div class="fx-card">
+        <h3 style="font-size:17px; margin-bottom:10px;">Logo Suite</h3>
+        <p style="color:#9284b8; font-size:14px; line-height:1.6;">Wordmark, icon lockup, and exclusion-zone rules across light and dark backgrounds.</p>
+      </div>
+      <div class="fx-card">
+        <h3 style="font-size:17px; margin-bottom:10px;">Typography</h3>
+        <p style="color:#9284b8; font-size:14px; line-height:1.6;"><strong style="color:#c4b8e8;">Denostill</strong> for display headlines, <strong style="color:#c4b8e8;">Open Sauce Two</strong> for body — engineered contrast between bold statement and readable UI copy.</p>
+      </div>
+      <div class="fx-card">
+        <h3 style="font-size:17px; margin-bottom:10px;">Pattern &amp; Iconography</h3>
+        <p style="color:#9284b8; font-size:14px; line-height:1.6;">A custom icon set and geometric pattern language used across marketing surfaces and empty states.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:56px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:18px;">Primary color system</p>
+      <div style="display:grid; grid-template-columns:repeat(10,1fr); gap:8px;">
+        <div class="fx-swatch" style="background:#f5f0ff; color:#1a1230;">50</div>
+        <div class="fx-swatch" style="background:#e4d6ff; color:#1a1230;">100</div>
+        <div class="fx-swatch" style="background:#c9adff; color:#1a1230;">200</div>
+        <div class="fx-swatch" style="background:#ab84fb; color:#1a1230;">300</div>
+        <div class="fx-swatch" style="background:#9161f5; color:#fff;">400</div>
+        <div class="fx-swatch" style="background:#7c3aed; color:#fff;">500</div>
+        <div class="fx-swatch" style="background:#6428c7; color:#fff;">600</div>
+        <div class="fx-swatch" style="background:#4c1d95; color:#fff;">700</div>
+        <div class="fx-swatch" style="background:#341469; color:#fff;">800</div>
+        <div class="fx-swatch" style="background:#1e0c40; color:#fff;">900</div>
+      </div>
+      <p style="color:#655a85; font-size:13px; margin-top:14px;">Approximate rendering of FreedX's purple-led palette — 9 additional secondary/semantic ramps (gray, dark, green, yellow, red, blue, alpha) support light and dark theme tokens.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESIGN TOKENS ===== -->
+<section style="border-top:1px solid rgba(124,58,237,.2);">
+  <div class="wrap">
+    <div class="section-label reveal">02 — Design System &amp; Tokens</div>
+    <h2 class="reveal" style="font-size:clamp(26px,3.4vw,40px); max-width:760px;">154 variables, structured for both light and dark themes.</h2>
+    <div class="reveal-stagger" style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px;">
+      <div class="fx-card"><h3 style="font-size:28px; font-family:'Space Grotesk',sans-serif;">Hero</h3><p style="color:#9284b8; font-size:13px; margin-top:8px;">Display type scale</p></div>
+      <div class="fx-card"><h3 style="font-size:22px; font-family:'Space Grotesk',sans-serif;">Headline</h3><p style="color:#9284b8; font-size:13px; margin-top:8px;">Section type scale</p></div>
+      <div class="fx-card"><h3 style="font-size:16px; font-family:'Space Grotesk',sans-serif;">Body</h3><p style="color:#9284b8; font-size:13px; margin-top:8px;">UI &amp; paragraph text</p></div>
+      <div class="fx-card"><h3 style="font-size:12px; text-transform:uppercase; letter-spacing:.1em; font-family:'Space Grotesk',sans-serif;">Overline</h3><p style="color:#9284b8; font-size:13px; margin-top:8px;">Labels &amp; eyebrow text</p></div>
+    </div>
+    <p class="reveal" style="color:#9284b8; margin-top:32px; max-width:680px; font-size:15px; line-height:1.7;">
+      The token system covers background, text, border and semantic states (success, warning, error, info) for both themes — so every product surface, from the trading terminal to marketing pages, pulls from one governed source of truth rather than one-off hex values.
+    </p>
+  </div>
+</section>
+
+<!-- ===== PRODUCT UI ===== -->
+<section style="border-top:1px solid rgba(124,58,237,.2);">
+  <div class="wrap">
+    <div class="section-label reveal">03 — Product UI</div>
+    <h2 class="reveal" style="font-size:clamp(26px,3.4vw,40px); max-width:760px;">From onboarding to error states — the full trading app experience.</h2>
+
+    <div class="reveal-stagger" style="margin-top:56px;">
+      <div class="fx-ui-group">
+        <div class="fx-ui-label">Onboarding</div>
+        <div class="fx-ui-row">
+          <img src="images/freedx-splash.jpg" alt="FreedX splash screen — Trade Crypto with Confidence">
+          <img src="images/freedx-verify-identity.jpg" alt="FreedX verify your identity prompt on home screen">
+          <img src="images/freedx-total-balance.jpg" alt="FreedX home screen with total balance and spotlight coins">
+          <img src="images/freedx-trading-contest.jpg" alt="FreedX trading contest promo and account menu">
+        </div>
+      </div>
+
+      <div class="fx-ui-group">
+        <div class="fx-ui-label">KYC / Verification</div>
+        <div class="fx-ui-row">
+          <img src="images/freedx-verification-unverified.jpg" alt="FreedX identity verification screen, unverified state">
+          <img src="images/freedx-verification-underreview.jpg" alt="FreedX verification submission under review">
+          <img src="images/freedx-verification-level1.jpg" alt="FreedX Level 1 verification completed, details view">
+          <img src="images/freedx-verification-level2.jpg" alt="FreedX unlock Level 2 access screen">
+        </div>
+      </div>
+
+      <div class="fx-ui-group">
+        <div class="fx-ui-label">Wallet &amp; Deposit</div>
+        <div class="fx-ui-row">
+          <img src="images/freedx-assets-deposit.jpg" alt="FreedX deposit now screen with popular crypto">
+          <img src="images/freedx-assets-overview-full.jpg" alt="FreedX assets overview with funded accounts and balances">
+          <img src="images/freedx-assets-search.jpg" alt="FreedX asset search screen">
+          <img src="images/freedx-assets-overview.jpg" alt="FreedX assets overview screen, no assets empty state">
+        </div>
+      </div>
+
+      <div class="fx-ui-group">
+        <div class="fx-ui-label">Empty States</div>
+        <div class="fx-ui-row">
+          <img src="images/freedx-empty-favorites.jpg" alt="FreedX empty state — no favorites added yet">
+          <img src="images/freedx-empty-futures.jpg" alt="FreedX empty state — customize futures widgets">
+          <img src="images/freedx-empty-buynotavailable.jpg" alt="FreedX empty state — buy not available in region">
+          <img src="images/freedx-empty-whitelist.jpg" alt="FreedX empty state — no whitelisted withdrawal addresses">
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:56px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:18px;">Edge cases, designed with the same care</p>
+      <div class="reveal-stagger" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <div><img src="images/freedx-error-maintenance.jpg" alt="FreedX under maintenance error state" style="width:100%; border-radius:12px; border:1px solid rgba(124,58,237,.3); display:block;"></div>
+        <div><img src="images/freedx-error-404.jpg" alt="FreedX 404 not found error state" style="width:100%; border-radius:12px; border:1px solid rgba(124,58,237,.3); display:block;"></div>
+        <div><img src="images/freedx-error-wrong.jpg" alt="FreedX something went wrong error state" style="width:100%; border-radius:12px; border:1px solid rgba(124,58,237,.3); display:block;"></div>
+        <div><img src="images/freedx-error-region.jpg" alt="FreedX service not available in your region error state" style="width:100%; border-radius:12px; border:1px solid rgba(124,58,237,.3); display:block;"></div>
+      </div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:16px;">
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Under Maintenance</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">404 — Not Found</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Something Went Wrong</span>
+        <span class="fx-card" style="padding:10px 18px; font-size:13px; color:#c4b8e8;">Region Unavailable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARKETING ===== -->
+<section style="border-top:1px solid rgba(124,58,237,.2);">
+  <div class="wrap">
+    <div class="section-label reveal">04 — Marketing &amp; Growth</div>
+    <h2 class="reveal" style="font-size:clamp(26px,3.4vw,40px); max-width:760px;">Pitch deck, multilingual campaigns and lifecycle email.</h2>
+    <div class="reveal" style="margin-top:48px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:16px;">Pitch deck &amp; promo hero creative</p>
+      <div class="fx-campaign-hero reveal-stagger">
+        <div><img src="images/freedx-campaign-48horas.jpg" alt="FreedX ÚLTIMAS 48 HORAS deposit bonus countdown creative, Spanish"></div>
+        <div><img src="images/freedx-campaign-stablecoin.jpg" alt="FreedX $273 Billion stablecoin supply pitch deck slide"></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:16px;">#FreedxCreatorDrop — creator campaign</p>
+      <div class="fx-campaign-square reveal-stagger">
+        <div><img src="images/freedx-campaign-makecontent.jpg" alt="FreedX creator drop campaign — Make content, get paid"></div>
+        <div><img src="images/freedx-campaign-yourstory.jpg" alt="FreedX creator drop campaign — Your story, our drop"></div>
+        <div><img src="images/freedx-campaign-postit.jpg" alt="FreedX creator drop campaign — Post it, get paid"></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:16px;">500 USDT relaunch — social post set</p>
+      <div class="fx-social-strip reveal-stagger">
+        <img src="images/freedx-social-01.jpg" alt="FreedX social post — We're giving you 500 USDT to celebrate">
+        <img src="images/freedx-social-02.jpg" alt="FreedX social post — Same exchange, completely rebuilt">
+        <img src="images/freedx-social-03.jpg" alt="FreedX social post — Celebrating with a new web">
+        <img src="images/freedx-social-04.jpg" alt="FreedX social post — The Freedx Revamp Offer, 500 USDT bonus">
+        <img src="images/freedx-social-05.jpg" alt="FreedX social post — Here's all you have to do">
+        <img src="images/freedx-social-06.jpg" alt="FreedX social post — Why are we doing this, we rebuilt everything for you">
+        <img src="images/freedx-social-07.jpg" alt="FreedX social post — Low fees, 500 USDT, New Freedx">
+        <img src="images/freedx-social-08.jpg" alt="FreedX social post — Join and Earn, the offer won't last">
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <p style="font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8b7fae; margin-bottom:16px;">Freedx Hub — blog &amp; educational content</p>
+      <div class="reveal-stagger" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-competitors.jpg" alt="Freedx Hub blog — Freedx vs Competitors" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-elsalvador.jpg" alt="Freedx Hub blog — How to buy USDT in El Salvador in 2026" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-cryptosafe.jpg" alt="Freedx Hub blog — Is Crypto Actually Safe?" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-usdtvsusdc.jpg" alt="Freedx Hub blog — Which is more available in Nigeria, USDT or USDC" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-stablecoins.jpg" alt="Freedx Hub blog — What is a stablecoin and how does it work" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-feestructure.jpg" alt="Freedx Hub blog — What is the Freedx fee structure and how does it compare" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-convertcrypto.jpg" alt="Freedx Hub blog — How to convert crypto instantly on Freedx" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+        <a href="https://hub.freedx.com/" target="_blank" rel="noopener" class="cursor-hover"><img src="images/freedx-blog-usdtvsusdc-boxing.jpg" alt="Freedx Hub blog — USDT vs USDC, which stablecoin is better for Nigerians" style="width:100%; border-radius:10px; border:1px solid rgba(124,58,237,.25); display:block;"></a>
+      </div>
+      <p style="color:#655a85; font-size:13px; margin-top:14px;">Read more on <a href="https://hub.freedx.com/" target="_blank" rel="noopener" style="color:#c4b8e8; text-decoration:underline;">hub.freedx.com</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" style="border-top:1px solid rgba(124,58,237,.2);">
+  <div class="wrap">
+    <div class="footer-top reveal">
+      <h2>More work, more range.</h2>
+      <a href="branding.html" class="btn btn-solid cursor-hover">See Branding Work →</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Narine Maghakyan</span>
+      <div class="footer-socials">
+        <a href="https://www.behance.net/narinemaghakyann" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/narine-maghakyan-73769a1a3" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:narinemaghakyan@gmail.com">Email</a>
+      </div>
+      <span>freedx.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
