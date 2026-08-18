@@ -122,6 +122,13 @@ section{ position:relative; padding:140px 0; }
 .section-label::before{ content:''; width:28px; height:1px; background:var(--accent); }
 
 /* ---------- reveal animation ---------- */
+/* Safety: if JS never boots (or reduced-motion is on) nothing may stay hidden.
+   js/main.js adds .js-motion to <html>; without it everything renders visible. */
+html:not(.js-motion) .reveal,
+html:not(.js-motion) .reveal-stagger > *,
+html:not(.js-motion) .mk-i{
+  opacity:1 !important; transform:none !important;
+}
 .reveal{ opacity:0; transform:translateY(36px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
 .reveal.in{ opacity:1; transform:translateY(0); }
 .reveal-stagger > *{ opacity:0; transform:translateY(30px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
@@ -265,4 +272,63 @@ section{ position:relative; padding:140px 0; }
 @media(max-width:900px){
   .work-row{ grid-template-columns:1fr; gap:20px; }
   .work-row .wr-meta{ text-align:left; }
+}
+
+/* ============================================
+   MOTION SYSTEM
+   All hidden states below are scoped to html.js-motion,
+   which js/main.js adds only after it boots successfully.
+   ============================================ */
+
+/* smooth scroll takes over from native smooth behaviour */
+html.js-smooth{ scroll-behavior:auto; }
+
+/* ---------- text mask reveal ---------- */
+html.js-motion [data-mask="1"] .mk{
+  display:inline-block;
+  overflow:hidden;
+  vertical-align:top;
+  padding-bottom:0.14em;
+  margin-bottom:-0.14em;
+}
+html.js-motion [data-mask="1"] .mk-i{
+  display:inline-block;
+  transform:translateY(115%);
+  transition:transform 1.05s var(--ease);
+}
+html.js-motion [data-mask="1"].mask-in .mk-i{ transform:translateY(0); }
+
+/* ---------- image parallax ---------- */
+@property --ps{ syntax:'<number>'; initial-value:1.12; inherits:false; }
+
+html.js-motion .px-box{ overflow:hidden; }
+html.js-motion .bnd-hero-media.px-box,
+html.js-motion .pj-hero-media.px-box{ border-radius:4px; }
+html.js-motion .fx-campaign-hero > .px-box{ border-radius:12px; }
+
+html.js-motion .px-img{
+  --py:0px;
+  --ps:1.12;
+  transform:translate3d(0,var(--py),0) scale(var(--ps));
+  transition:--ps .8s var(--ease);
+  will-change:transform;
+}
+/* keep the existing hover-zoom on work rows, composed with parallax */
+html.js-motion .work-row:hover .wr-media .px-img{ --ps:1.18; }
+
+/* ---------- interactive particle wordmark ---------- */
+.hero-particles{ position:relative; }
+.hero-particles canvas{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+.masthead-name.is-particled{ color:transparent; }
+
+/* ---------- motion-safety ---------- */
+@media (prefers-reduced-motion: reduce){
+  html.js-motion [data-mask="1"] .mk-i{ transform:none !important; transition:none !important; }
+  html.js-motion .px-img{ transform:none !important; }
+  .masthead-name.is-particled{ color:var(--text) !important; }
+  .hero-particles canvas{ display:none !important; }
 }
