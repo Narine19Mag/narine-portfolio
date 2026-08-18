@@ -514,6 +514,58 @@
     });
 
     // =========================================================
+    // 10b. PAGE TRANSITION
+    // Fades the page in on load, and out before an internal
+    // navigation — the one motion the reference site has that
+    // this one didn't. The overlay is created by JS only, so a
+    // JS failure means no overlay rather than a black screen.
+    // =========================================================
+    safe('pageTransition', function () {
+      if (!motionOK) return;
+
+      var ov = document.createElement('div');
+      ov.className = 'page-fade';
+      ov.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ov);
+
+      function reveal() { ov.classList.remove('is-in'); ov.classList.add('is-out'); }
+
+      // fade in on arrival
+      requestAnimationFrame(function () { requestAnimationFrame(reveal); });
+      // and whenever we come back via bfcache / browser back button
+      window.addEventListener('pageshow', reveal);
+      window.addEventListener('popstate', reveal);
+
+      document.addEventListener('click', function (e) {
+        if (e.defaultPrevented) return;
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+        var a = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!a) return;
+
+        var href = a.getAttribute('href') || '';
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+        if (a.hasAttribute('download')) return;
+        if (a.target && a.target !== '' && a.target !== '_self') return;
+
+        var url;
+        try { url = new URL(a.href, location.href); } catch (err) { return; }
+        if (url.origin !== location.origin) return;
+        if (url.pathname === location.pathname) return;   // same page / anchor
+
+        e.preventDefault();
+        ov.classList.remove('is-out');
+        ov.classList.add('is-in');
+
+        var went = false;
+        function go() { if (went) return; went = true; location.href = a.href; }
+        setTimeout(go, 340);
+        setTimeout(go, 1200);   // hard fallback — navigation must never be lost
+      });
+    });
+
+    // =========================================================
     // 11. INTERACTIVE PARTICLE WORDMARK (homepage hero)
     // The name is rendered as a particle field that scatters
     // away from the cursor and springs back into shape.

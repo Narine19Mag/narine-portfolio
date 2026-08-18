@@ -380,3 +380,85 @@ html.js-motion .work-row:hover .wr-count{ opacity:1; transform:translateY(0); }
   html.js-motion .wr-layer{ display:none !important; }
   html.js-motion .wr-count{ display:none !important; }
 }
+
+/* ============================================
+   RESPONSIVE LAYOUT PRIMITIVES
+   These replace inline grid styles, which media
+   queries could not override (inline wins).
+   ============================================ */
+.split{ display:grid; gap:60px; }
+.split-bio{ grid-template-columns:1fr 1.3fr; }
+.split-teaser{ grid-template-columns:1fr 1.4fr; align-items:center; }
+.split-overview{ grid-template-columns:1fr 1.5fr; }
+.split-even{ grid-template-columns:1fr 1fr; }
+
+.cv-row{
+  display:grid; grid-template-columns:1fr 2fr 1fr; gap:24px;
+  padding:26px 0; border-bottom:1px solid var(--line); align-items:baseline;
+}
+.cv-row-last{ border-bottom:none; }
+
+.fx-grid{ display:grid; gap:24px; }
+.fx-grid-3{ grid-template-columns:repeat(3,1fr); }
+.fx-grid-4{ grid-template-columns:repeat(4,1fr); }
+.fx-grid-tight{ gap:16px; }
+.fx-swatches{ display:grid; grid-template-columns:repeat(10,1fr); gap:8px; }
+
+@media(max-width:1000px){
+  .fx-grid-4{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:900px){
+  .split{ grid-template-columns:1fr !important; gap:40px; }
+  .fx-grid-3{ grid-template-columns:1fr; }
+  .cv-row{ grid-template-columns:1fr; gap:6px; padding:22px 0; }
+  .cv-row span{ text-align:left !important; }
+  .cv-row span:first-child{ order:-1; font-size:13px !important; }
+}
+@media(max-width:560px){
+  .fx-grid-4{ grid-template-columns:1fr; }
+  .fx-swatches{ grid-template-columns:repeat(5,1fr); }
+}
+
+/* ---------- masthead on small screens ---------- */
+@media(max-width:768px){
+  .masthead{ padding:100px 20px 50px; min-height:88vh; }
+  .masthead-foot{ flex-direction:column; align-items:flex-start; gap:18px; margin-top:44px; }
+  .masthead-foot p{ max-width:none; }
+  .masthead-foot p[style]{ text-align:left !important; }
+  .masthead-role{ margin-top:14px; }
+}
+
+/* ---------- general small-screen tightening ---------- */
+@media(max-width:768px){
+  .work-row{ padding:36px 0; }
+  .work-row .wr-media{ max-width:100%; }
+  .footer-top{ padding-bottom:40px; gap:24px; }
+  .footer-bottom{ gap:12px; }
+  .site-footer{ padding:60px 0 32px; }
+  .pj-facts{ gap:18px; margin-top:32px; padding-top:24px; }
+  .bnd-block, .pj-block{ margin-top:80px; }
+  .bnd-hero, .pj-hero{ gap:32px; }
+}
+@media(max-width:480px){
+  .pj-facts{ grid-template-columns:1fr 1fr; }
+  .pj-facts strong{ font-size:16px; }
+  .btn{ padding:12px 20px; font-size:12px; }
+}
+
+/* nothing may ever scroll sideways */
+html, body{ max-width:100%; overflow-x:hidden; }
+
+/* ---------- page transition ---------- */
+/* Element is created by JS only, so if JS fails there is no overlay at all. */
+.page-fade{
+  position:fixed; inset:0; z-index:9000;
+  background:var(--bg);
+  pointer-events:none;
+  opacity:1;
+  transition:opacity .45s var(--ease);
+}
+.page-fade.is-out{ opacity:0; }
+.page-fade.is-in{ opacity:1; transition:opacity .32s var(--ease); }
+@media (prefers-reduced-motion: reduce){
+  .page-fade{ display:none !important; }
+}
