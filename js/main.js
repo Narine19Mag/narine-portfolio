@@ -314,6 +314,61 @@
     });
 
     // =========================================================
+    // 9b. WORK-ROW MEDIA — cursor follow
+    // Matches the reference site: the image is completely static
+    // on scroll, and pans with the cursor while hovering the row.
+    // Desktop pointers only.
+    // =========================================================
+    safe('workMediaFollow', function () {
+      if (!motionOK || !fine) return;
+
+      var items = $$('.work-row').map(function (row) {
+        var box = $('.wr-media', row);
+        var img = box ? $('img', box) : null;
+        if (!box || !img) return null;
+        img.classList.add('wr-follow');
+        return { row: row, box: box, img: img,
+                 tx: 0, ty: 0, ts: 1,      // target
+                 cx: 0, cy: 0, cs: 1 };    // current
+      }).filter(Boolean);
+
+      if (!items.length) return;
+
+      var TRAVEL = 0.06;   // ±3% of the frame — stays inside the 1.07 scale headroom
+      var SCALE  = 1.07;
+
+      items.forEach(function (it) {
+        it.row.addEventListener('mousemove', function (e) {
+          var r = it.box.getBoundingClientRect();
+          if (!r.width || !r.height) return;
+          var nx = clamp((e.clientX - r.left) / r.width - 0.5, -0.5, 0.5);
+          var ny = clamp((e.clientY - r.top) / r.height - 0.5, -0.5, 0.5);
+          it.tx = nx * r.width * TRAVEL;    // moves WITH the cursor
+          it.ty = ny * r.height * TRAVEL;
+          it.ts = SCALE;
+        }, { passive: true });
+
+        it.row.addEventListener('mouseleave', function () {
+          it.tx = 0; it.ty = 0; it.ts = 1;
+        });
+      });
+
+      addTicker(function () {
+        for (var i = 0; i < items.length; i++) {
+          var it = items[i];
+          var dx = it.tx - it.cx, dy = it.ty - it.cy, ds = it.ts - it.cs;
+          if (Math.abs(dx) < 0.01 && Math.abs(dy) < 0.01 && Math.abs(ds) < 0.0004) continue;
+          it.cx += dx * 0.11;
+          it.cy += dy * 0.11;
+          it.cs += ds * 0.11;
+          it.img.style.setProperty('--mx', it.cx.toFixed(2) + 'px');
+          it.img.style.setProperty('--my', it.cy.toFixed(2) + 'px');
+          it.img.style.setProperty('--ms', it.cs.toFixed(4));
+        }
+      });
+    });
+
+    // =========================================================
     // 10. SMOOTH SCROLL (lerp) — desktop pointers only
     // Native scrolling is untouched on touch devices.
     // =========================================================

@@ -264,9 +264,16 @@ html:not(.js-motion) .mk-i{
 .work-row .wr-media{
   aspect-ratio:3/4; overflow:hidden; border-radius:2px; background:#0d0d0f; max-width:503px;
 }
-/* Reference site (webxdemo artist1) keeps this image completely static:
-   no hover zoom, no scroll transform. Matched deliberately. */
+/* Reference site (webxdemo artist1): static on scroll, pans with the
+   cursor on hover. The follow itself is lerped in js/main.js. */
 .work-row .wr-media img{ width:100%; height:100%; object-fit:cover; }
+html.js-motion .work-row .wr-media img.wr-follow{
+  transform:translate3d(var(--mx,0px),var(--my,0px),0) scale(var(--ms,1));
+  will-change:transform;
+}
+@media (prefers-reduced-motion: reduce){
+  html.js-motion .work-row .wr-media img.wr-follow{ transform:none !important; }
+}
 .work-row .wr-meta{ text-align:right; font-family:'Space Grotesk',sans-serif; }
 .work-row .wr-meta .wr-label{ font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-faint); margin-bottom:6px; }
 .work-row .wr-meta .wr-type{ font-size:14px; color:var(--text-dim); }
