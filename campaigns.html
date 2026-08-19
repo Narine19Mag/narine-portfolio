@@ -4,13 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Social &amp; Campaign Design — Narine Maghakyan</title>
-<meta name="description" content="Marketing and campaign design by Narine Maghakyan — creator and UGC campaign visuals, social systems and promotional art direction.">
+<meta name="description" content="Social and campaign design by Narine Maghakyan — localized paid display systems, lifecycle CRM across email, push and web, and social campaigns.">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  .cm-hero{ display:flex; justify-content:center; }
-  .cm-hero img{ width:100%; max-width:760px; border-radius:6px; display:block; background:#111; }
-  .cm-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:56px 48px; margin-top:96px; }
-  .cm-item h3{ font-size:20px; font-weight:600; margin-bottom:12px; }
+  .cm-facts{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    margin-top:40px; padding-top:32px; border-top:1px solid var(--line);
+  }
+  .cm-facts div{
+    font-size:13px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-faint); margin-bottom:8px; font-family:'Space Grotesk',sans-serif;
+  }
+  .cm-facts strong{
+    display:block; font-size:18px; color:var(--text); font-weight:500;
+    text-transform:none; letter-spacing:0;
+  }
+
+  /* ---- section headers ---- */
+  .cm-set{ margin-top:110px; }
+  .cm-set:first-of-type{ margin-top:0; }
+  .cm-set-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:14px;
+  }
+  .cm-set-head h2{ font-size:clamp(22px,2.6vw,34px); letter-spacing:-0.02em; }
+  .cm-set-head span{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:.1em; white-space:nowrap;
+  }
+  .cm-note{
+    color:var(--text-dim); font-size:15px; line-height:1.7; max-width:640px;
+    font-family:'Space Grotesk',sans-serif; font-weight:300; margin-bottom:38px;
+  }
+
+  /* ---- sub label ---- */
+  .cm-sub{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-faint);
+    margin:44px 0 16px; display:flex; align-items:center; gap:12px;
+  }
+  .cm-sub b{ color:var(--text-dim); font-weight:500; letter-spacing:.06em; }
+  .cm-sub::after{ content:''; flex:1; height:1px; background:var(--line); }
+
+  /* ---- paid display: true-proportion rows ---- */
+  .ad-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
+  .ad-row img{
+    height:var(--h); width:auto; max-width:100%;
+    border-radius:4px; display:block; background:#111;
+    border:1px solid var(--line);
+    transition:transform .45s var(--ease), border-color .45s var(--ease);
+  }
+  .ad-row img:hover{ transform:translateY(-4px); border-color:rgba(217,255,79,.4); }
+  .ad-wide img{ width:100%; height:auto; }
+
+  /* ---- wide lifecycle banners ---- */
+  .lc-stack{ display:flex; flex-direction:column; gap:16px; }
+  .lc-stack figure{ margin:0; }
+  .lc-stack img{
+    width:100%; border-radius:5px; display:block; background:#111;
+    border:1px solid var(--line);
+  }
+  .lc-cap{
+    display:flex; justify-content:space-between; gap:12px; margin-top:9px;
+    font-family:'Space Grotesk',sans-serif; font-size:11px;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint);
+  }
+  .lc-cap b{ color:var(--text-dim); font-weight:500; }
+
+  /* ---- channel triad ---- */
+  .chan{ display:grid; grid-template-columns:1.6fr 1fr .8fr; gap:18px; align-items:start; }
+  .chan img{ width:100%; border-radius:5px; display:block; background:#111; border:1px solid var(--line); }
+
+  /* ---- post grids ---- */
+  .post-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .post-grid img{
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:6px; display:block; background:#111;
+    transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .post-grid img:hover{ transform:translateY(-6px); box-shadow:0 20px 45px rgba(0,0,0,.5); }
+  .key-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .key-row img{ width:100%; border-radius:6px; display:block; background:#111; }
+
+  /* ---- carousel strip ---- */
+  .carousel{ display:flex; gap:12px; overflow-x:auto; padding-bottom:14px; scrollbar-width:thin; }
+  .carousel img{
+    height:420px; width:auto; border-radius:6px; flex-shrink:0;
+    display:block; background:#111; border:1px solid var(--line);
+  }
+
+  /* ---- craft notes ---- */
+  .cm-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:56px 48px; margin-top:56px; }
+  .cm-item h3{ font-size:19px; font-weight:600; margin-bottom:12px; }
   .cm-item p{
     color:var(--text-dim); font-size:15px; line-height:1.75;
     font-family:'Space Grotesk',sans-serif; font-weight:300;
@@ -19,8 +104,18 @@
     font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.1em;
     color:var(--text-faint); margin-bottom:10px;
   }
+
   @media(max-width:900px){
-    .cm-grid{ grid-template-columns:1fr; gap:42px; margin-top:64px; }
+    .cm-facts{ grid-template-columns:1fr 1fr; }
+    .cm-grid{ grid-template-columns:1fr; gap:40px; }
+    .post-grid{ grid-template-columns:repeat(2,1fr); }
+    .chan{ grid-template-columns:1fr; }
+    .key-row{ grid-template-columns:1fr; }
+    .cm-set{ margin-top:78px; }
+    .cm-set-head{ flex-direction:column; gap:6px; align-items:flex-start; }
+    .ad-row{ --h:auto !important; }
+    .ad-row img{ height:auto; width:100%; }
+    .carousel img{ height:300px; }
   }
 </style>
 </head>
@@ -40,38 +135,229 @@
   <div class="wrap">
     <p class="reveal in" style="text-transform:uppercase; letter-spacing:.14em; font-size:13px; color:var(--text-dim); margin-bottom:20px;">06 — Selected Work</p>
     <h1 class="reveal in" style="font-size:clamp(36px,7vw,88px); max-width:900px;">Social &amp; Campaign Design</h1>
-    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:640px; margin-top:20px;">Social and campaign design across e-commerce and creator brands — key art, post sets and placement systems built so one idea survives being resized into every format it has to ship in.</p>
+    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:680px; margin-top:20px;">Campaign systems rather than one-off graphics — a single offer built out across six ad formats and three languages, lifecycle messages that hold together over email, push and web, and social work that shifts register completely from crypto to beauty.</p>
+
+    <div class="cm-facts reveal in">
+      <div>Brands<strong>2</strong></div>
+      <div>Assets<strong>60</strong></div>
+      <div>Languages<strong>EN / ES / UA</strong></div>
+      <div>Channels<strong>Display · CRM · Social</strong></div>
+    </div>
   </div>
 </header>
 
 <section style="padding-top:40px;">
   <div class="wrap">
 
-    <div class="cm-hero reveal in">
-      <img src="images/campaigns-hero.jpg" alt="Creator marketing campaign visual — stacked creator profile cards with Connect actions on a high-contrast lime background">
+    <!-- ================= FREEDX — PAID DISPLAY ================= -->
+    <div class="cm-set">
+      <div class="cm-set-head reveal">
+        <h2>FreedX — Paid Display</h2>
+        <span>50 USDT Welcome Bonus · 18 executions</span>
+      </div>
+      <p class="cm-note reveal">One offer, six IAB standard sizes, three languages. Every ratio from a 970×90 leaderboard to a 160×600 skyscraper is redrawn rather than rescaled — the 3D bonus lockup, the headline and the CTA each re-rank depending on how much room the placement gives them.</p>
+
+      <div class="cm-sub reveal"><b>970 × 250</b> Billboard</div>
+      <div class="ad-row ad-wide reveal">
+        <img src="images/cmp-ad-en-970x250.jpg" alt="FreedX 50 USDT bonus billboard, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-970x250.jpg" alt="FreedX 50 USDT bonus billboard, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-970x250.jpg" alt="FreedX 50 USDT bonus billboard, Ukrainian" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>970 × 90</b> Leaderboard</div>
+      <div class="ad-row ad-wide reveal">
+        <img src="images/cmp-ad-en-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, Ukrainian" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>320 × 100</b> Mobile banner</div>
+      <div class="ad-row reveal" style="--h:100px">
+        <img src="images/cmp-ad-en-320x100.jpg" alt="FreedX mobile banner, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-320x100.jpg" alt="FreedX mobile banner, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-320x100.jpg" alt="FreedX mobile banner, Ukrainian" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>300 × 250</b> Medium rectangle</div>
+      <div class="ad-row reveal" style="--h:250px">
+        <img src="images/cmp-ad-en-300x250.jpg" alt="FreedX medium rectangle, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-300x250.jpg" alt="FreedX medium rectangle, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-300x250.jpg" alt="FreedX medium rectangle, Ukrainian" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>300 × 600</b> Half page &nbsp;·&nbsp; <b>160 × 600</b> Skyscraper</div>
+      <div class="ad-row reveal" style="--h:440px">
+        <img src="images/cmp-ad-en-300x600.jpg" alt="FreedX half page, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-300x600.jpg" alt="FreedX half page, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-300x600.jpg" alt="FreedX half page, Ukrainian" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-en-160x600.jpg" alt="FreedX skyscraper, English" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-es-160x600.jpg" alt="FreedX skyscraper, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-ad-ua-160x600.jpg" alt="FreedX skyscraper, Ukrainian" loading="lazy" decoding="async">
+      </div>
     </div>
 
-    <div class="cm-grid">
-      <div class="cm-item reveal">
-        <div class="cm-num">[ 01 ]</div>
-        <h3>Colour as the hook</h3>
-        <p>A single saturated field does the work of stopping the scroll, with the product and the people kept in full colour against it. The palette is loud on purpose and stays consistent across every placement.</p>
+    <!-- ================= FREEDX — LIFECYCLE ================= -->
+    <div class="cm-set">
+      <div class="cm-set-head reveal">
+        <h2>FreedX — Lifecycle &amp; CRM</h2>
+        <span>Triggered email, web pop-up &amp; push</span>
+      </div>
+      <p class="cm-note reveal">Behavioural triggers, each with its own job: get the account verified, get the first deposit in, recover a failed one, bring a dormant trader back. The 3D object carries the message so the same header works in three languages without redrawing the art.</p>
+
+      <div class="cm-sub reveal"><b>Trigger headers</b> Email · six states</div>
+      <div class="lc-stack reveal">
+        <figure>
+          <img src="images/cmp-lc-header-es-a.jpg" alt="Freedx email header: your account is not active yet, complete KYC in 3 minutes (Spanish)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>Tu cuenta aún no está activa</b><span>KYC incomplete · ES</span></div>
+        </figure>
+        <figure>
+          <img src="images/cmp-lc-header-en-b.jpg" alt="Freedx email header: one deposit away, fund your account (English)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>One deposit away</b><span>No first deposit · EN</span></div>
+        </figure>
+        <figure>
+          <img src="images/cmp-lc-header-en-f.jpg" alt="Freedx email header: your deposit didn't go through, let's fix that (English)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>Your deposit didn't go through</b><span>Failed deposit · EN</span></div>
+        </figure>
+        <figure>
+          <img src="images/cmp-lc-header-ua-d.jpg" alt="Freedx email header: your funds have been credited, time to trade (Ukrainian)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>Ваші кошти зараховано</b><span>Funds credited · UA</span></div>
+        </figure>
+        <figure>
+          <img src="images/cmp-lc-header-es-c.jpg" alt="Freedx email header: one trade completed, the market wants more (Spanish)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>Una operación completada</b><span>Post first trade · ES</span></div>
+        </figure>
+        <figure>
+          <img src="images/cmp-lc-header-es-e.jpg" alt="Freedx email header: the market didn't wait but your account did (Spanish)" loading="lazy" decoding="async">
+          <div class="lc-cap"><b>El mercado no esperó</b><span>Win-back · ES</span></div>
+        </figure>
       </div>
 
-      <div class="cm-item reveal">
-        <div class="cm-num">[ 02 ]</div>
-        <h3>Creator-first composition</h3>
-        <p>Real creators lead the frame rather than product shots. Layered, overlapping cards suggest a feed of people rather than a catalogue, and the stack reads as depth even at small sizes.</p>
+      <div class="cm-sub reveal"><b>Platform migration</b> One message, three channels</div>
+      <p class="cm-note reveal" style="margin-bottom:24px;">Moving an existing user base to a new domain — the same instruction rebuilt for an email header, a web pop-up and a push notification, then localized. Stage one asks for the balance transfer; stage two tells returning users their balance is already there.</p>
+
+      <div class="cm-sub reveal" style="margin-top:24px;"><b>Stage 01</b> Transfer your balance · EN</div>
+      <div class="chan reveal">
+        <img src="images/cmp-lc-kyc1-header-en.jpg" alt="Migration stage 1 email header, English" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc1-popup-en.jpg" alt="Migration stage 1 web pop-up, English" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc1-push-en.jpg" alt="Migration stage 1 push notification, English" loading="lazy" decoding="async">
+      </div>
+      <div class="cm-sub reveal" style="margin-top:22px;"><b>Stage 01</b> Spanish</div>
+      <div class="chan reveal">
+        <img src="images/cmp-lc-kyc1-header-es.jpg" alt="Migration stage 1 email header, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc1-popup-es.jpg" alt="Migration stage 1 web pop-up, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc1-push-es.jpg" alt="Migration stage 1 push notification, Spanish" loading="lazy" decoding="async">
       </div>
 
-      <div class="cm-item reveal">
-        <div class="cm-num">[ 03 ]</div>
-        <h3>A modular card system</h3>
-        <p>Each card holds an avatar, handle, creator category and one action — a repeatable unit that can be restacked, recoloured or extended to any number of creators without redrawing the layout.</p>
+      <div class="cm-sub reveal" style="margin-top:36px;"><b>Stage 02</b> Just sign in · EN</div>
+      <div class="chan reveal">
+        <img src="images/cmp-lc-kyc2-header-en.jpg" alt="Migration stage 2 email header, English" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc2-popup-en.jpg" alt="Migration stage 2 web pop-up, English" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc2-push-en.jpg" alt="Migration stage 2 push notification, English" loading="lazy" decoding="async">
+      </div>
+      <div class="cm-sub reveal" style="margin-top:22px;"><b>Stage 02</b> Spanish</div>
+      <div class="chan reveal">
+        <img src="images/cmp-lc-kyc2-header-es.jpg" alt="Migration stage 2 email header, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc2-popup-es.jpg" alt="Migration stage 2 web pop-up, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-lc-kyc2-push-es.jpg" alt="Migration stage 2 push notification, Spanish" loading="lazy" decoding="async">
       </div>
     </div>
 
-    <div class="reveal" style="margin-top:90px;">
+    <!-- ================= FREEDX — LAUNCH SOCIAL ================= -->
+    <div class="cm-set">
+      <div class="cm-set-head reveal">
+        <h2>FreedX — Relaunch Social</h2>
+        <span>Key art, feed posts &amp; swipe carousel</span>
+      </div>
+      <p class="cm-note reveal">The "new look" relaunch, told across formats — wide key art for web and video end-frames, feed posts that lead with the offer, and a six-panel carousel that walks through what actually changed.</p>
+
+      <div class="cm-sub reveal"><b>Key art</b> 16:9</div>
+      <div class="key-row reveal">
+        <img src="images/cmp-fx-key-01.jpg" alt="Freedx got a new look key visual on black with light arc" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-key-02.jpg" alt="Freedx got a new look key visual with platform screen" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>Feed posts</b> 4:5</div>
+      <div class="post-grid reveal">
+        <img src="images/cmp-fx-post-01.jpg" alt="Freedx post: we ran the numbers, here's your reward" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-post-02.jpg" alt="Freedx post: 500 USDT bonus for traders who show up" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-post-03.jpg" alt="Freedx post: we didn't just redesign the web" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-post-04.jpg" alt="Freedx post: claim your bonus, platform overview" loading="lazy" decoding="async">
+      </div>
+
+      <div class="cm-sub reveal"><b>Swipe carousel</b> Six panels</div>
+      <div class="carousel reveal">
+        <img src="images/cmp-fx-carousel-1.jpg" alt="Carousel panel 1: Freedx got a new look" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-carousel-2.jpg" alt="Carousel panel 2: faster, built for the trader" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-carousel-3.jpg" alt="Carousel panel 3: clean and intentional" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-carousel-4.jpg" alt="Carousel panel 4: built for performance" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-carousel-5.jpg" alt="Carousel panel 5: actually on your side" loading="lazy" decoding="async">
+        <img src="images/cmp-fx-carousel-6.jpg" alt="Carousel panel 6: the new Freedx is live" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- ================= ELIA LASER ================= -->
+    <div class="cm-set">
+      <div class="cm-set-head reveal">
+        <h2>Elia Laser</h2>
+        <span>Beauty clinic — social content system</span>
+      </div>
+      <p class="cm-note reveal">A completely different register: soft neutrals, a hand-drawn monoline mark and generous space. The grid has to hold editorial photography, 3D product stills and pure-type posts without any of them looking borrowed — so the type treatment and the signature loop do the holding.</p>
+
+      <div class="post-grid reveal">
+        <img src="images/cmp-elia-01.jpg" alt="Elia Laser post: laser hair removal for every skin tone" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-03.jpg" alt="Elia Laser post: laser hair removal, the time-saver for your beauty routine" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-06.jpg" alt="Elia Laser post: it's time to break free from the shaving cycle" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-11.jpg" alt="Elia Laser post: transform your skin, one treatment at a time" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-04.jpg" alt="Elia Laser post: laser rule number one, no waxing" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-05.jpg" alt="Elia Laser post: take control of ingrown hairs" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-02.jpg" alt="Elia Laser post: men, it's time to ditch the shave" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-08.jpg" alt="Elia Laser post: curious if laser hair removal is right for you" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-10.jpg" alt="Elia Laser post: summer prep starts now" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-07.jpg" alt="Elia Laser Valentine's Day post" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-09.jpg" alt="Elia Laser post: let's celebrate ourselves today and every day" loading="lazy" decoding="async">
+        <img src="images/cmp-elia-12.jpg" alt="Elia Laser post: invest in yourself, feel the difference" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <!-- ================= CRAFT NOTES ================= -->
+    <div style="margin-top:130px; border-top:1px solid var(--line); padding-top:56px;">
+      <p class="reveal" style="font-size:13px; text-transform:uppercase; letter-spacing:.12em; color:var(--text-dim);">How these are built</p>
+
+      <div class="cm-grid">
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 01 ]</div>
+          <h3>Designed per ratio, not rescaled</h3>
+          <p>A 160×600 skyscraper isn't a squeezed billboard. Each size gets its own hierarchy — what leads, what shrinks, what gets cut entirely — so the offer still reads at the size it actually serves at.</p>
+        </div>
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 02 ]</div>
+          <h3>Built to be localized</h3>
+          <p>English, Spanish and Ukrainian run through the same layouts. Copy areas are sized for the longest translation from the start, so nothing reflows or overruns when the language changes.</p>
+        </div>
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 03 ]</div>
+          <h3>One message across channels</h3>
+          <p>An email header, a web pop-up and a push notification are three very different crops of one idea. Each keeps the same object and the same instruction while respecting how much attention its channel actually gets.</p>
+        </div>
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 04 ]</div>
+          <h3>Triggered by behaviour</h3>
+          <p>Incomplete KYC, no first deposit, a failed transaction, a dormant account. Each state gets its own visual so the message is recognisable before a single word is read.</p>
+        </div>
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 05 ]</div>
+          <h3>3D as the carrier</h3>
+          <p>Rendered objects — a padlock, coins, a bonus lockup — hold the meaning where translated copy can't. They travel across languages and formats without redrawing.</p>
+        </div>
+        <div class="cm-item reveal">
+          <div class="cm-num">[ 06 ]</div>
+          <h3>Register shifts with the brand</h3>
+          <p>Crypto asks for saturated purple, heavy weights and urgency. A beauty clinic asks for the opposite — neutral tone, light type, air. The systems thinking is the same; the surface is not.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:100px;">
       <a href="index.html" class="btn cursor-hover">← Back to Work</a>
     </div>
 
