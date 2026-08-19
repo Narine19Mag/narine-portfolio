@@ -4,26 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Email &amp; Lifecycle Design — Narine Maghakyan</title>
-<meta name="description" content="Email and lifecycle design by Narine Maghakyan — welcome flows, promotional campaigns, product education and retention design for e-commerce brands.">
+<meta name="description" content="Email and lifecycle design by Narine Maghakyan — welcome flows, promotional campaigns, product education and UGC campaigns for e-commerce brands.">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  .em-hero{ display:flex; justify-content:center; }
-  .em-hero img{
-    width:100%; max-width:860px; border-radius:6px; display:block;
-    background:#111;
-  }
-  .em-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:60px 56px; margin-top:96px; }
-  .em-item h3{ font-size:20px; font-weight:600; margin-bottom:12px; }
-  .em-item p{
-    color:var(--text-dim); font-size:15px; line-height:1.75;
-    font-family:'Space Grotesk',sans-serif; font-weight:300;
-  }
-  .em-num{
-    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.1em;
-    color:var(--text-faint); margin-bottom:10px;
-  }
+  /* ---------- facts ---------- */
   .em-facts{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
     margin-top:40px; padding-top:32px; border-top:1px solid var(--line);
   }
   .em-facts div{
@@ -34,9 +20,86 @@
     display:block; font-size:18px; color:var(--text); font-weight:500;
     text-transform:none; letter-spacing:0;
   }
+
+  /* ---------- brand group ---------- */
+  .em-set{ margin-top:96px; }
+  .em-set:first-of-type{ margin-top:0; }
+  .em-set-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:32px;
+  }
+  .em-set-head h2{ font-size:clamp(22px,2.6vw,34px); letter-spacing:-0.02em; }
+  .em-set-head span{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:.1em; white-space:nowrap;
+  }
+
+  /* ---------- email cards ---------- */
+  .em-row{ display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:26px; }
+
+  .em-frame{
+    position:relative; height:540px; border-radius:8px; overflow:hidden;
+    background:#fff; border:1px solid var(--line);
+    transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  }
+  .em-frame img{ width:100%; display:block; transition:transform 1.1s var(--ease); }
+
+  .em-card:hover .em-frame{
+    transform:translateY(-7px);
+    box-shadow:0 22px 55px rgba(0,0,0,.55);
+    border-color:rgba(217,255,79,.35);
+  }
+  /* the whole email plays through inside its frame */
+  .em-card:hover .em-frame img{
+    transition:transform 9s linear;
+    transform:translateY(calc(540px - 100%));
+  }
+
+  .em-hint{
+    position:absolute; right:10px; bottom:10px; z-index:3;
+    font-family:'Space Grotesk',sans-serif; font-size:10px;
+    letter-spacing:.09em; text-transform:uppercase;
+    background:rgba(10,10,11,.74); color:var(--accent);
+    padding:5px 10px; border-radius:100px;
+    backdrop-filter:blur(6px);
+    transition:opacity .35s var(--ease);
+    pointer-events:none;
+  }
+  .em-card:hover .em-hint{ opacity:0; }
+
+  .em-cap{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-top:14px; }
+  .em-cap b{ font-size:14px; font-weight:600; letter-spacing:-0.01em; }
+  .em-cap span{
+    font-family:'Space Grotesk',sans-serif; font-size:11px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:.08em; white-space:nowrap;
+  }
+
+  /* ---------- craft notes ---------- */
+  .em-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:56px 48px; margin-top:56px; }
+  .em-item h3{ font-size:19px; font-weight:600; margin-bottom:12px; }
+  .em-item p{
+    color:var(--text-dim); font-size:15px; line-height:1.75;
+    font-family:'Space Grotesk',sans-serif; font-weight:300;
+  }
+  .em-num{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.1em;
+    color:var(--text-faint); margin-bottom:10px;
+  }
+
   @media(max-width:900px){
-    .em-grid{ grid-template-columns:1fr; gap:44px; margin-top:64px; }
     .em-facts{ grid-template-columns:1fr 1fr; }
+    .em-grid{ grid-template-columns:1fr; gap:40px; }
+    .em-set{ margin-top:72px; }
+    .em-set-head{ flex-direction:column; gap:6px; align-items:flex-start; }
+  }
+  /* no hover on touch — let the email be scrolled by finger instead */
+  @media (hover:none){
+    .em-frame{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+    .em-frame img{ transform:none !important; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .em-card:hover .em-frame img{ transition:none !important; transform:none !important; }
+    .em-card:hover .em-frame{ transform:none !important; }
   }
 </style>
 </head>
@@ -56,10 +119,11 @@
   <div class="wrap">
     <p class="reveal in" style="text-transform:uppercase; letter-spacing:.14em; font-size:13px; color:var(--text-dim); margin-bottom:20px;">Email &amp; UI Design</p>
     <h1 class="reveal in" style="font-size:clamp(36px,7vw,88px); max-width:900px;">Email &amp; Lifecycle Design</h1>
-    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:640px; margin-top:20px;">Welcome flows, promotional campaigns, product education and retention design for e-commerce brands across beauty, swimwear, activewear and haircare — built to stay on-brand in the inbox and legible on a phone.</p>
+    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:660px; margin-top:20px;">Welcome flows, promotional campaigns, product education and UGC activations for e-commerce brands across beauty, swimwear, activewear and haircare — designed to hold the brand in the inbox and stay readable on a phone.</p>
 
     <div class="em-facts reveal in">
-      <div>Discipline<strong>Email &amp; lifecycle</strong></div>
+      <div>Emails<strong>16 designs</strong></div>
+      <div>Brands<strong>7</strong></div>
       <div>Built in<strong>Klaviyo</strong></div>
       <div>Formats<strong>Flows &amp; campaigns</strong></div>
     </div>
@@ -69,49 +133,227 @@
 <section style="padding-top:40px;">
   <div class="wrap">
 
-    <div class="em-hero reveal in">
-      <img src="images/email-hero.jpg" alt="A grid of email designs — welcome emails, giveaway campaigns, promotional offers, product education and best-seller merchandising across several e-commerce brands">
-    </div>
-
-    <div class="em-grid">
-      <div class="em-item reveal">
-        <div class="em-num">[ 01 ]</div>
-        <h3>Welcome &amp; onboarding flows</h3>
-        <p>The first email a subscriber ever sees, carrying the discount code that converts them. Brand voice set immediately, one clear offer, and a single obvious action — with the hero product introduced before the reader has to scroll.</p>
+    <!-- ============ VITALITY ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Vitality</h2>
+        <span>Athleisure — welcome flow, launches &amp; drops</span>
       </div>
-
-      <div class="em-item reveal">
-        <div class="em-num">[ 02 ]</div>
-        <h3>Promotional campaigns</h3>
-        <p>Sitewide offers and seasonal sets where the discount has to read instantly at thumbnail size in a crowded inbox. Large type, product-forward imagery, and a button placed where the thumb already is.</p>
-      </div>
-
-      <div class="em-item reveal">
-        <div class="em-num">[ 03 ]</div>
-        <h3>Product education</h3>
-        <p>Ingredient and fabric breakdowns that explain why a product works — annotated callouts, numbered routine steps, and benefit labelling that turns a spec sheet into something worth reading.</p>
-      </div>
-
-      <div class="em-item reveal">
-        <div class="em-num">[ 04 ]</div>
-        <h3>Community &amp; UGC campaigns</h3>
-        <p>Giveaways and creator campaigns built around numbered entry steps, so the mechanics are understood at a glance. Layouts designed to hold user-generated photography without looking like a different brand.</p>
-      </div>
-
-      <div class="em-item reveal">
-        <div class="em-num">[ 05 ]</div>
-        <h3>Merchandising &amp; best sellers</h3>
-        <p>Modular product grids that scale from three products to thirty without redesign — consistent card spacing, price and title hierarchy, and per-product CTAs that survive being reflowed to a single column.</p>
-      </div>
-
-      <div class="em-item reveal">
-        <div class="em-num">[ 06 ]</div>
-        <h3>Built for real inboxes</h3>
-        <p>Every layout is designed to collapse cleanly to one column on mobile, stay readable when images are blocked, and keep type at a size that works on a phone held at arm's length.</p>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-vitality-welcome.jpg" alt="Vitality welcome email — 10% off code, Cloud II collection, review and best sellers" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Hi, We're Vitality</b><span>Welcome flow</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-vitality-welcome-alt.jpg" alt="Vitality welcome email variant with rounded hero and Cloud II product line-up" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Welcome — variant</b><span>A/B layout</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-vitality-coastal.jpg" alt="Vitality Coastal Cloud II launch email with fabric callouts" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Coastal Cloud II™</b><span>Product launch</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-vitality-cherry.jpg" alt="Vitality Cherry — Spring in the Park collection email" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Cherry</b><span>Collection drop</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="reveal" style="margin-top:90px;">
+    <!-- ============ SUPERGOOP! ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Supergoop!</h2>
+        <span>SPF skincare — onboarding &amp; category campaigns</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-supergoop-welcome.jpg" alt="Welcome to Supergoop! email with 10% off code and PLAY SPF 50 bestseller" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Welcome to Supergoop!</b><span>Welcome flow</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-supergoop-brighter.jpg" alt="Supergoop! Make Your Days Brighter family sunscreen campaign" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Make Your Days Brighter</b><span>Category campaign</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-supergoop-spf.jpg" alt="Supergoop! SPF for Everyone subscription confirmation email" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>SPF for Everyone</b><span>Sign-up confirmation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TRIANGL ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Triangl</h2>
+        <span>Swimwear — UGC activation &amp; collection</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-triangl-giveaway.jpg" alt="Triangl Summer TikTok giveaway email with three numbered entry steps" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Summer TikTok Giveaway</b><span>UGC activation</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-triangl-collection.jpg" alt="Triangl collection email split into For Her and For Him" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>For Her / For Him</b><span>Collection campaign</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MONDAY ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Monday Swimwear</h2>
+        <span>Swimwear — drops &amp; styling</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-monday-drop.jpg" alt="Monday Swimwear new drop email with beach editorial photography" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Sweetest Drop</b><span>New drop</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-monday-look.jpg" alt="Monday Swimwear Complete the Look styling email" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Complete the Look</b><span>Styling &amp; cross-sell</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MIA VESPER ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Mia Vesper</h2>
+        <span>Fashion — seasonal edits &amp; lookbook</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-miavesper-floral.jpg" alt="Mia Vesper floral edit email with statement pieces section" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>The Floral Edit</b><span>Seasonal edit</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-miavesper-newdrop.jpg" alt="Mia Vesper new drop email on black with lookbook strip" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>New Drop '26</b><span>Drop &amp; lookbook</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BUFFBUNNY ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Buffbunny</h2>
+        <span>Activewear — promotion &amp; product education</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-buffbunny-offer.jpg" alt="Buffbunny 20% off promotional email with best sellers grid" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Level Up Your Fit Game</b><span>Promotional offer</span></div>
+        </div>
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-buffbunny-fabrics.jpg" alt="Buffbunny fabric technology education email with flexibility, breathability and support" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Explore Our Fabrics</b><span>Product education</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ RAFAELA OF SWEDEN ============ -->
+    <div class="em-set">
+      <div class="em-set-head reveal">
+        <h2>Rafaela of Sweden</h2>
+        <span>Haircare — promotion &amp; routine</span>
+      </div>
+      <div class="em-row">
+        <div class="em-card reveal">
+          <div class="em-frame">
+            <img src="images/em-rafaela-summer.jpg" alt="Rafaela of Sweden 20% off summer set email with oil ingredient callouts and three routine steps" loading="lazy" decoding="async">
+            <span class="em-hint">Hover to play</span>
+          </div>
+          <div class="em-cap"><b>Set of Summer</b><span>Promo &amp; routine</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CRAFT NOTES ============ -->
+    <div style="margin-top:130px; border-top:1px solid var(--line); padding-top:56px;">
+      <p class="reveal" style="font-size:13px; text-transform:uppercase; letter-spacing:.12em; color:var(--text-dim);">How they're built</p>
+
+      <div class="em-grid">
+        <div class="em-item reveal">
+          <div class="em-num">[ 01 ]</div>
+          <h3>Welcome flows</h3>
+          <p>The first email a subscriber ever sees, carrying the code that converts them. Brand voice set immediately, one clear offer, and the hero product introduced before the reader has to scroll.</p>
+        </div>
+        <div class="em-item reveal">
+          <div class="em-num">[ 02 ]</div>
+          <h3>Promotional campaigns</h3>
+          <p>Sitewide offers where the discount has to read instantly at thumbnail size in a crowded inbox — large type, product-forward imagery, and the button placed where the thumb already is.</p>
+        </div>
+        <div class="em-item reveal">
+          <div class="em-num">[ 03 ]</div>
+          <h3>Product education</h3>
+          <p>Ingredient and fabric breakdowns that explain why a product works — annotated callouts, numbered routine steps and benefit labelling that turn a spec sheet into something worth reading.</p>
+        </div>
+        <div class="em-item reveal">
+          <div class="em-num">[ 04 ]</div>
+          <h3>UGC &amp; community</h3>
+          <p>Giveaways built around numbered entry steps so the mechanics are understood at a glance, with layouts that hold user-generated photography without looking like a different brand.</p>
+        </div>
+        <div class="em-item reveal">
+          <div class="em-num">[ 05 ]</div>
+          <h3>Modular merchandising</h3>
+          <p>Product grids that scale from three items to thirty without redesign — consistent card spacing, price and title hierarchy, and per-product CTAs that survive reflowing to a single column.</p>
+        </div>
+        <div class="em-item reveal">
+          <div class="em-num">[ 06 ]</div>
+          <h3>Built for real inboxes</h3>
+          <p>Every layout collapses cleanly to one column on mobile, stays readable when images are blocked, and keeps type at a size that works on a phone held at arm's length.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:100px;">
       <a href="index.html" class="btn cursor-hover">← Back to Work</a>
     </div>
 
