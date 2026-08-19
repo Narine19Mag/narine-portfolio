@@ -47,15 +47,15 @@
   .cm-sub::after{ content:''; flex:1; height:1px; background:var(--line); }
 
   /* ---- paid display: true-proportion rows ---- */
-  .ad-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
-  .ad-row img{
+  .fmt-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
+  .fmt-row img{
     height:var(--h); width:auto; max-width:100%;
     border-radius:4px; display:block; background:#111;
     border:1px solid var(--line);
     transition:transform .45s var(--ease), border-color .45s var(--ease);
   }
-  .ad-row img:hover{ transform:translateY(-4px); border-color:rgba(217,255,79,.4); }
-  .ad-wide img{ width:100%; height:auto; }
+  .fmt-row img:hover{ transform:translateY(-4px); border-color:rgba(217,255,79,.4); }
+  .fmt-wide img{ width:100%; height:auto; }
 
   /* ---- wide lifecycle banners ---- */
   .lc-stack{ display:flex; flex-direction:column; gap:16px; }
@@ -113,8 +113,8 @@
     .key-row{ grid-template-columns:1fr; }
     .cm-set{ margin-top:78px; }
     .cm-set-head{ flex-direction:column; gap:6px; align-items:flex-start; }
-    .ad-row{ --h:auto !important; }
-    .ad-row img{ height:auto; width:100%; }
+    .fmt-row{ --h:auto !important; }
+    .fmt-row img{ height:auto; width:100%; }
     .carousel img{ height:300px; }
   }
 </style>
@@ -158,41 +158,41 @@
       <p class="cm-note reveal">One offer, six IAB standard sizes, three languages. Every ratio from a 970×90 leaderboard to a 160×600 skyscraper is redrawn rather than rescaled — the 3D bonus lockup, the headline and the CTA each re-rank depending on how much room the placement gives them.</p>
 
       <div class="cm-sub reveal"><b>970 × 250</b> Billboard</div>
-      <div class="ad-row ad-wide reveal">
-        <img src="images/cmp-ad-en-970x250.jpg" alt="FreedX 50 USDT bonus billboard, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-970x250.jpg" alt="FreedX 50 USDT bonus billboard, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-970x250.jpg" alt="FreedX 50 USDT bonus billboard, Ukrainian" loading="lazy" decoding="async">
+      <div class="fmt-row fmt-wide reveal">
+        <img src="images/cmp-fmt-en-bill.jpg" alt="FreedX 50 USDT bonus billboard, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-bill.jpg" alt="FreedX 50 USDT bonus billboard, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-bill.jpg" alt="FreedX 50 USDT bonus billboard, Ukrainian" loading="lazy" decoding="async">
       </div>
 
       <div class="cm-sub reveal"><b>970 × 90</b> Leaderboard</div>
-      <div class="ad-row ad-wide reveal">
-        <img src="images/cmp-ad-en-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-970x90.jpg" alt="FreedX 50 USDT bonus leaderboard, Ukrainian" loading="lazy" decoding="async">
+      <div class="fmt-row fmt-wide reveal">
+        <img src="images/cmp-fmt-en-lead.jpg" alt="FreedX 50 USDT bonus leaderboard, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-lead.jpg" alt="FreedX 50 USDT bonus leaderboard, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-lead.jpg" alt="FreedX 50 USDT bonus leaderboard, Ukrainian" loading="lazy" decoding="async">
       </div>
 
       <div class="cm-sub reveal"><b>320 × 100</b> Mobile banner</div>
-      <div class="ad-row reveal" style="--h:100px">
-        <img src="images/cmp-ad-en-320x100.jpg" alt="FreedX mobile banner, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-320x100.jpg" alt="FreedX mobile banner, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-320x100.jpg" alt="FreedX mobile banner, Ukrainian" loading="lazy" decoding="async">
+      <div class="fmt-row reveal" style="--h:100px">
+        <img src="images/cmp-fmt-en-mob.jpg" alt="FreedX mobile banner, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-mob.jpg" alt="FreedX mobile banner, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-mob.jpg" alt="FreedX mobile banner, Ukrainian" loading="lazy" decoding="async">
       </div>
 
       <div class="cm-sub reveal"><b>300 × 250</b> Medium rectangle</div>
-      <div class="ad-row reveal" style="--h:250px">
-        <img src="images/cmp-ad-en-300x250.jpg" alt="FreedX medium rectangle, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-300x250.jpg" alt="FreedX medium rectangle, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-300x250.jpg" alt="FreedX medium rectangle, Ukrainian" loading="lazy" decoding="async">
+      <div class="fmt-row reveal" style="--h:250px">
+        <img src="images/cmp-fmt-en-mr.jpg" alt="FreedX medium rectangle, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-mr.jpg" alt="FreedX medium rectangle, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-mr.jpg" alt="FreedX medium rectangle, Ukrainian" loading="lazy" decoding="async">
       </div>
 
       <div class="cm-sub reveal"><b>300 × 600</b> Half page &nbsp;·&nbsp; <b>160 × 600</b> Skyscraper</div>
-      <div class="ad-row reveal" style="--h:440px">
-        <img src="images/cmp-ad-en-300x600.jpg" alt="FreedX half page, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-300x600.jpg" alt="FreedX half page, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-300x600.jpg" alt="FreedX half page, Ukrainian" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-en-160x600.jpg" alt="FreedX skyscraper, English" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-es-160x600.jpg" alt="FreedX skyscraper, Spanish" loading="lazy" decoding="async">
-        <img src="images/cmp-ad-ua-160x600.jpg" alt="FreedX skyscraper, Ukrainian" loading="lazy" decoding="async">
+      <div class="fmt-row reveal" style="--h:440px">
+        <img src="images/cmp-fmt-en-hp.jpg" alt="FreedX half page, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-hp.jpg" alt="FreedX half page, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-hp.jpg" alt="FreedX half page, Ukrainian" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-en-sky.jpg" alt="FreedX skyscraper, English" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-es-sky.jpg" alt="FreedX skyscraper, Spanish" loading="lazy" decoding="async">
+        <img src="images/cmp-fmt-ua-sky.jpg" alt="FreedX skyscraper, Ukrainian" loading="lazy" decoding="async">
       </div>
     </div>
 
