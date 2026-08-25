@@ -441,7 +441,7 @@ html, body{ max-width:100%; overflow-x:hidden; }
   transform:translate3d(0, calc(var(--stagger) + var(--drift)), 0);
 }
 /* the stagger itself — only when the motion system is on */
-html.js-motion .wcard:nth-child(even){ --stagger:130px; }
+html.js-motion .wcard:nth-child(even){ --stagger:88px; }
 
 /* opacity-only reveal, so it can't fight the transform above */
 html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
@@ -452,7 +452,7 @@ html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
   /* NOTE: no max-height here — combined with aspect-ratio it shrinks the
      WIDTH too, so the image stops filling its column and the caption
      below ends up wider than the picture. */
-  aspect-ratio:1/1;
+  aspect-ratio:3/2;
   overflow:hidden; border-radius:3px; background:#0d0d0f;
 }
 .wcard-media img{
@@ -484,7 +484,7 @@ html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
   .work-grid2{ grid-template-columns:1fr; gap:48px; padding-bottom:0; }
   html.js-motion .wcard:nth-child(even){ --stagger:0px; }
   .wcard{ transform:none !important; }
-  .wcard-media{ aspect-ratio:1/1; }   /* same ratio as desktop so one export fits both */
+  .wcard-media{ aspect-ratio:3/2; }   /* same ratio as desktop so one export fits both */
   .wcard-title{ max-width:none; }
   .wcard-type{ max-width:none; }
 }
