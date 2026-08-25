@@ -66,6 +66,7 @@
       safe('failsafe', function () {
         $$('.reveal, .reveal-stagger').forEach(function (el) { el.classList.add('in'); });
         $$('[data-mask]').forEach(function (el) { el.classList.add('mask-in'); });
+        $$('.fade').forEach(function (el) { el.classList.add('in'); });
       });
     }, 3000);
 
@@ -130,6 +131,7 @@
         'h1:not(.masthead-name)',
         '.masthead-role',
         '.wr-title',
+        '.wcard-title',
         '.footer-top h2',
         '.bnd-hero h2',
         '.pj-hero h2',
@@ -206,7 +208,7 @@
     // 6. GENERIC SCROLL REVEAL (fade/rise) — unchanged behaviour
     // =========================================================
     safe('reveal', function () {
-      var els = $$('.reveal, .reveal-stagger');
+      var els = $$('.reveal, .reveal-stagger, .fade');
       if (!els.length) return;
       if (!('IntersectionObserver' in window) || !motionOK) {
         els.forEach(function (el) { el.classList.add('in'); });
@@ -322,7 +324,7 @@
     safe('workMediaFollow', function () {
       if (!motionOK || !fine) return;
 
-      var items = $$('.work-row').map(function (row) {
+      var items = $$('.work-row, .wcard').map(function (row) {
         var box = $('.wr-media', row);
         var img = box ? $('img', box) : null;
         if (!box || !img) return null;
@@ -364,6 +366,36 @@
           it.img.style.setProperty('--mx', it.cx.toFixed(2) + 'px');
           it.img.style.setProperty('--my', it.cy.toFixed(2) + 'px');
           it.img.style.setProperty('--ms', it.cs.toFixed(4));
+        }
+      });
+    });
+
+    // =========================================================
+    // 9c. COLUMN DRIFT — homepage work grid
+    // Odd cards rise slightly, even cards sink, mapped to how far
+    // through the grid you've scrolled. Bounded so it can never
+    // push a card into the section below.
+    // =========================================================
+    safe('columnDrift', function () {
+      if (!motionOK || !fine) return;
+      var grid = $('[data-drift-grid]');
+      if (!grid) return;
+
+      var cards = $$('.wcard', grid);
+      if (cards.length < 2) return;
+
+      var MAX = 70;   // px of travel in each direction
+
+      addTicker(function () {
+        var r = grid.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (r.bottom < -200 || r.top > vh + 200) return;   // offscreen
+        // 0 when the grid is just below the fold, 1 when it has fully passed
+        var p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+        var shift = (p - 0.5) * 2 * MAX;                   // -MAX .. +MAX
+        for (var i = 0; i < cards.length; i++) {
+          var dir = (i % 2 === 0) ? -1 : 1;
+          cards[i].style.setProperty('--drift', (shift * dir).toFixed(1) + 'px');
         }
       });
     });
