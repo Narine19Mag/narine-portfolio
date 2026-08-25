@@ -449,7 +449,10 @@ html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
 
 .wcard-media{
   position:relative;
-  aspect-ratio:4/5; max-height:600px;
+  /* NOTE: no max-height here — combined with aspect-ratio it shrinks the
+     WIDTH too, so the image stops filling its column and the caption
+     below ends up wider than the picture. */
+  aspect-ratio:1/1;
   overflow:hidden; border-radius:3px; background:#0d0d0f;
 }
 .wcard-media img{
