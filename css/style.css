@@ -445,7 +445,7 @@ html.js-motion .wcard:nth-child(even){ --stagger:88px; }
 
 /* opacity-only reveal, so it can't fight the transform above */
 html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
-.fade.in{ opacity:1; }
+html.js-motion .fade.in{ opacity:1; }
 
 .wcard-media{
   position:relative;
