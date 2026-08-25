@@ -356,6 +356,20 @@ html.js-motion .px-img{
   padding:26px 0; border-bottom:1px solid var(--line); align-items:baseline;
 }
 .cv-row-last{ border-bottom:none; }
+.cv-row h3{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.cv-tag{
+  font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:500;
+  text-transform:uppercase; letter-spacing:.09em; color:var(--text-faint);
+  border:1px solid var(--line); border-radius:999px; padding:4px 10px;
+  white-space:nowrap; line-height:1;
+}
+.cv-subhead{
+  font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase;
+  letter-spacing:.12em; color:var(--text-faint);
+  margin-top:34px; padding-bottom:14px; border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:12px;
+}
+.cv-subhead::after{ content:''; flex:1; height:1px; background:var(--line); }
 
 .fx-grid{ display:grid; gap:24px; }
 .fx-grid-3{ grid-template-columns:repeat(3,1fr); }
