@@ -484,7 +484,7 @@ html.js-motion .fade{ opacity:0; transition:opacity .9s var(--ease); }
   .work-grid2{ grid-template-columns:1fr; gap:48px; padding-bottom:0; }
   html.js-motion .wcard:nth-child(even){ --stagger:0px; }
   .wcard{ transform:none !important; }
-  .wcard-media{ aspect-ratio:4/5; max-height:none; }
+  .wcard-media{ aspect-ratio:1/1; }   /* same ratio as desktop so one export fits both */
   .wcard-title{ max-width:none; }
   .wcard-type{ max-width:none; }
 }
