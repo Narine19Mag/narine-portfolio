@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motion Graphics — Narine Maghakyan</title>
+<meta name="description" content="Motion design by Narine Maghakyan — social video, animated campaign assets and product explainers for FreedX.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .mo-facts{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+    margin-top:40px; padding-top:32px; border-top:1px solid var(--line);
+  }
+  .mo-facts div{
+    font-size:13px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-faint); margin-bottom:8px; font-family:'Space Grotesk',sans-serif;
+  }
+  .mo-facts strong{
+    display:block; font-size:18px; color:var(--text); font-weight:500;
+    text-transform:none; letter-spacing:0;
+  }
+
+  .mo-set{ margin-top:96px; }
+  .mo-set:first-of-type{ margin-top:0; }
+  .mo-head{
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:14px;
+  }
+  .mo-head h2{ font-size:clamp(22px,2.6vw,34px); letter-spacing:-0.02em; }
+  .mo-head span{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:.1em; white-space:nowrap;
+  }
+  .mo-note{
+    color:var(--text-dim); font-size:15px; line-height:1.7; max-width:640px;
+    font-family:'Space Grotesk',sans-serif; font-weight:300; margin-bottom:38px;
+  }
+
+  /* video frames */
+  .vid{ position:relative; border-radius:6px; overflow:hidden; background:#0d0d0f; }
+  .vid video{ width:100%; height:auto; display:block; }
+  .vid-sound{
+    position:absolute; right:14px; bottom:14px; z-index:2;
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.09em;
+    text-transform:uppercase; color:#0d0d0f; background:rgba(255,255,255,.88);
+    border:none; border-radius:999px; padding:8px 14px; cursor:pointer;
+    transition:background .25s var(--ease), transform .25s var(--ease);
+  }
+  .vid-sound:hover{ background:var(--accent); transform:translateY(-2px); }
+  .vid-cap{
+    display:flex; justify-content:space-between; gap:12px; margin-top:10px;
+    font-family:'Space Grotesk',sans-serif; font-size:11px;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint);
+  }
+  .vid-cap b{ color:var(--text-dim); font-weight:500; }
+
+  .vert-pair{ display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:760px; }
+
+  .mo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:56px 48px; margin-top:56px; }
+  .mo-item h3{ font-size:19px; font-weight:600; margin-bottom:12px; }
+  .mo-item p{
+    color:var(--text-dim); font-size:15px; line-height:1.75;
+    font-family:'Space Grotesk',sans-serif; font-weight:300;
+  }
+  .mo-num{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.1em;
+    color:var(--text-faint); margin-bottom:10px;
+  }
+
+  @media(max-width:900px){
+    .mo-facts{ grid-template-columns:1fr 1fr; }
+    .mo-grid{ grid-template-columns:1fr; gap:40px; }
+    .vert-pair{ grid-template-columns:1fr; }
+    .mo-set{ margin-top:70px; }
+    .mo-head{ flex-direction:column; gap:6px; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="logo">NARINE<span>.</span>M</a>
+  <div class="nav-links">
+    <a href="index.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="mailto:narinemaghakyan@gmail.com">Contact</a>
+  </div>
+  <button class="nav-toggle">Menu</button>
+</nav>
+
+<header style="padding-top:160px; padding-bottom:40px;">
+  <div class="wrap">
+    <p class="reveal in" style="text-transform:uppercase; letter-spacing:.14em; font-size:13px; color:var(--text-dim); margin-bottom:20px;">08 — Selected Work</p>
+    <h1 class="reveal in" style="font-size:clamp(36px,7vw,88px); max-width:900px;">Motion Graphics</h1>
+    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:680px; margin-top:20px;">Animation as part of the brand system, not decoration on top of it — social-first vertical video, animated campaign assets and long-form product explainers, all built on the same timing, easing and typographic rules as the static work.</p>
+
+    <div class="mo-facts reveal in">
+      <div>Client<strong>FreedX</strong></div>
+      <div>Pieces<strong>3 selected</strong></div>
+      <div>Formats<strong>9:16 · 16:9</strong></div>
+      <div>Channels<strong>Paid Social · TikTok · Web</strong></div>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:24px; padding-bottom:0;">
+  <div class="wrap">
+    <div class="ball-stage reveal in">
+      <canvas class="ball-canvas" data-balls data-count="9" data-period="3.6" aria-hidden="true"></canvas>
+    </div>
+    <p style="font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin-top:10px;">Bounce study — timing, squash &amp; stretch</p>
+  </div>
+</section>
+
+<section style="padding-top:64px;">
+  <div class="wrap">
+
+    <!-- ============ SOCIAL VERTICALS ============ -->
+    <div class="mo-set">
+      <div class="mo-head reveal">
+        <h2>Social Verticals</h2>
+        <span>9:16 · Paid social &amp; TikTok</span>
+      </div>
+      <p class="cm-note mo-note reveal">Two very different jobs in the same format. One is a hard deadline message that has to land in the first second; the other is a scripted skit that earns its point over fifteen. Both are cut for sound-off viewing first, with audio as a bonus rather than a dependency.</p>
+
+      <div class="vert-pair reveal">
+        <div>
+          <div class="vid">
+            <video src="videos/motion-clock.mp4" poster="images/motion-clock-poster.jpg"
+                   muted loop playsinline preload="metadata" data-autoloop></video>
+            <button class="vid-sound cursor-hover" data-sound>Sound on</button>
+          </div>
+          <div class="vid-cap"><b>Last Day — bonus countdown</b><span>0:08 · 9:16</span></div>
+        </div>
+
+        <div>
+          <div class="vid">
+            <video src="videos/motion-groupchat.mp4" poster="images/motion-groupchat-poster.jpg"
+                   muted loop playsinline preload="metadata" data-autoloop></video>
+            <button class="vid-sound cursor-hover" data-sound>Sound on</button>
+          </div>
+          <div class="vid-cap"><b>Group Chat Panic — TikTok</b><span>0:17 · 9:16</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PRODUCT EXPLAINER ============ -->
+    <div class="mo-set">
+      <div class="mo-head reveal">
+        <h2>OTC Desk — Product Explainer</h2>
+        <span>16:9 · 1:18 · Web &amp; sales</span>
+      </div>
+      <p class="cm-note mo-note reveal">A longer piece for a B2B audience: what the OTC desk does, how the fee tiers work, and who to contact — carried by 3D globe passes, real interface captures and animated pricing tables rather than stock footage.</p>
+
+      <div class="reveal">
+        <div class="vid">
+          <video src="videos/motion-otc.mp4" poster="images/motion-otc-poster.jpg"
+                 muted loop playsinline preload="metadata" data-autoloop></video>
+          <button class="vid-sound cursor-hover" data-sound>Sound on</button>
+        </div>
+        <div class="vid-cap"><b>FreedX OTC Desk — full film</b><span>1:18 · 16:9</span></div>
+      </div>
+    </div>
+
+    <!-- ============ CRAFT NOTES ============ -->
+    <div class="mo-set">
+      <div class="mo-head reveal">
+        <h2>How it's built</h2>
+        <span>Approach</span>
+      </div>
+
+      <div class="mo-grid">
+        <div class="mo-item reveal"><div class="mo-num">[ 01 ]</div><h3>Sound-off by default</h3><p>Every beat is legible with the audio muted — captions, type hierarchy and motion carry the message, so a scroll-past still delivers the offer.</p></div>
+        <div class="mo-item reveal"><div class="mo-num">[ 02 ]</div><h3>One easing library</h3><p>The same curves and hold durations run across formats, so a countdown, a skit and an explainer feel like they came from one studio.</p></div>
+        <div class="mo-item reveal"><div class="mo-num">[ 03 ]</div><h3>Squash, stretch, weight</h3><p>Classic animation principles applied to interface elements — objects carry mass and follow-through instead of sliding on linear tracks.</p></div>
+        <div class="mo-item reveal"><div class="mo-num">[ 04 ]</div><h3>Cut for the platform</h3><p>Vertical work is framed for the safe area of the feed, with the payoff placed before the average drop-off rather than at the end.</p></div>
+        <div class="mo-item reveal"><div class="mo-num">[ 05 ]</div><h3>Real product, real data</h3><p>Interface captures and actual fee tables in place of mockups, so nothing shown in the film has to be walked back by sales.</p></div>
+        <div class="mo-item reveal"><div class="mo-num">[ 06 ]</div><h3>Built to be re-cut</h3><p>Scenes are modular — a countdown date, a rate or a language can be swapped without rebuilding the composition.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top reveal">
+      <h2>Open to new projects and roles — let's talk.</h2>
+      <a href="mailto:narinemaghakyan@gmail.com" class="btn btn-solid cursor-hover">narinemaghakyan@gmail.com</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Narine Maghakyan</span>
+      <div class="footer-socials">
+        <a href="https://www.behance.net/narinemaghakyann" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/narine-maghakyan-73769a1a3" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:narinemaghakyan@gmail.com">Email</a>
+      </div>
+      <span>Yerevan, Armenia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

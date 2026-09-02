@@ -376,6 +376,235 @@
     // through the grid you've scrolled. Bounded so it can never
     // push a card into the section below.
     // =========================================================
+    // =========================================================
+    // VIDEO — play muted loops while in view, one-at-a-time sound
+    // =========================================================
+    safe('videoLoops', function () {
+      var vids = $$('video[data-autoloop]');
+      if (!vids.length) return;
+
+      function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+
+      if ('IntersectionObserver' in window) {
+        var vo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            var v = en.target;
+            if (en.isIntersecting) { if (v.paused) play(v); }
+            else if (!v.paused && v.muted) { v.pause(); }   // never interrupt a video the user is listening to
+          });
+        }, { threshold: 0.25 });
+        vids.forEach(function (v) { vo.observe(v); });
+      } else {
+        vids.forEach(play);
+      }
+
+      $$('[data-sound]').forEach(function (btn) {
+        var frame = btn.parentNode;
+        var v = $('video', frame);
+        if (!v) return;
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var turningOn = v.muted;
+          if (turningOn) {
+            // only one soundtrack at a time
+            vids.forEach(function (o) {
+              if (o !== v && !o.muted) {
+                o.muted = true;
+                var ob = $('[data-sound]', o.parentNode);
+                if (ob) ob.textContent = 'Sound on';
+              }
+            });
+          }
+          v.muted = !turningOn ? true : false;
+          btn.textContent = v.muted ? 'Sound on' : 'Sound off';
+          if (v.paused) play(v);
+        });
+      });
+    });
+
+    // =========================================================
+    // BOUNCING BALL LOOP — [data-balls] canvases
+    // A train of balls follows one continuous path: a wide arc
+    // across the top, then decaying bounces travelling back along
+    // the floor. Squash on contact, vertical stretch + gradient
+    // trail at speed. Pauses when off-screen.
+    // =========================================================
+    safe('ballLoop', function () {
+      var canvases = $$('canvas[data-balls]');
+      if (!canvases.length) return;
+
+      var COLOR = '175,255,132';   // #AFFF84
+
+      canvases.forEach(function (cv) {
+        var ctx = cv.getContext && cv.getContext('2d');
+        if (!ctx) return;
+
+        var COUNT  = parseInt(cv.getAttribute('data-count'), 10) || 7;
+        var PERIOD = parseFloat(cv.getAttribute('data-period')) || 3.4;   // seconds per lap
+
+        var W = 0, H = 0, dpr = 1;
+        function resize() {
+          var r = cv.getBoundingClientRect();
+          if (!r.width || !r.height) return false;
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = r.width; H = r.height;
+          cv.width  = Math.round(W * dpr);
+          cv.height = Math.round(H * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          return true;
+        }
+
+        // --- path geometry -------------------------------------------------
+        // segment 0: the big arc (left -> right, apex near the top)
+        // segments 1..3: decaying bounces travelling right -> left
+        var ARC = 0.52;                        // share of the lap spent in the big arc
+        var HOPS = [0.20, 0.088, 0.036];       // hop heights as a share of usable height
+        var hopDur = [], hopSum = 0;
+        HOPS.forEach(function (h) { var d = Math.sqrt(h); hopDur.push(d); hopSum += d; });
+        hopDur = hopDur.map(function (d) { return d / hopSum; });
+
+        // impact times within the lap (u in 0..1), used for the squash pulse
+        var impacts = [ARC];
+        (function () {
+          var acc = ARC;
+          for (var i = 0; i < hopDur.length; i++) {
+            acc += hopDur[i] * (1 - ARC);
+            impacts.push(acc);
+          }
+        })();
+
+        function posAt(u, R, ground, xL, xR) {
+          u = u - Math.floor(u);
+          var x, y;
+          if (u < ARC) {
+            var s = u / ARC;
+            x = xL + (xR - xL) * s;
+            y = ground - 4 * (H * 0.74 - R) * s * (1 - s);
+          } else {
+            var s2 = (u - ARC) / (1 - ARC);
+            x = xR + (xL - xR) * s2;
+            var acc = 0, hi = 0, local = 0;
+            for (var i = 0; i < hopDur.length; i++) {
+              if (s2 <= acc + hopDur[i] || i === hopDur.length - 1) {
+                hi = i; local = (s2 - acc) / hopDur[i];
+                break;
+              }
+              acc += hopDur[i];
+            }
+            local = clamp(local, 0, 1);
+            y = ground - 4 * (HOPS[hi] * H) * local * (1 - local);
+          }
+          return { x: x, y: y };
+        }
+
+        function draw(now) {
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, W, H);
+
+          var R      = W / (COUNT * 2);          // balls exactly fill the width in a row
+          var ground = H - R * 0.62;             // resting centre, slightly cropped by the frame
+          var xL     = R;
+          var xR     = W - R;
+          var t      = now / 1000;
+
+          for (var i = 0; i < COUNT; i++) {
+            var u  = (t / PERIOD) + i / COUNT;
+            var p  = posAt(u, R, ground, xL, xR);
+            var dt = 0.016 / PERIOD;
+            var pN = posAt(u + dt, R, ground, xL, xR);
+            var vy = (pN.y - p.y) / 0.016;       // px per second
+
+            // stretch with vertical speed
+            var speed   = Math.min(Math.abs(vy) / (H * 2.1), 1);
+            var stretch = 1 + speed * 0.95;
+
+            // squash pulse near each floor contact
+            var lap = u - Math.floor(u), imp = 1;
+            for (var k = 0; k < impacts.length; k++) {
+              var d = Math.abs(lap - impacts[k]);
+              d = Math.min(d, 1 - d) * PERIOD;   // seconds to nearest impact
+              imp = Math.min(imp, d);
+            }
+            var squash = Math.exp(-(imp / 0.075) * (imp / 0.075));
+
+            var sy = stretch * (1 - squash) + 0.66 * squash;
+            var sx = 1 / Math.pow(sy, 0.62);
+
+            var hw = R * sx, hh = R * sy;
+
+            // gradient trail on the tail end when stretched
+            var fade = clamp((sy - 1.12) / 0.75, 0, 1);
+            var grad;
+            if (fade > 0.02) {
+              var down = vy > 0;
+              grad = ctx.createLinearGradient(0, p.y - hh, 0, p.y + hh);
+              if (down) {
+                grad.addColorStop(0, 'rgba(' + COLOR + ',' + (1 - fade * 0.95).toFixed(3) + ')');
+                grad.addColorStop(0.55, 'rgba(' + COLOR + ',' + (1 - fade * 0.35).toFixed(3) + ')');
+                grad.addColorStop(1, 'rgba(' + COLOR + ',1)');
+              } else {
+                grad.addColorStop(0, 'rgba(' + COLOR + ',1)');
+                grad.addColorStop(0.45, 'rgba(' + COLOR + ',' + (1 - fade * 0.35).toFixed(3) + ')');
+                grad.addColorStop(1, 'rgba(' + COLOR + ',' + (1 - fade * 0.95).toFixed(3) + ')');
+              }
+            }
+
+            ctx.fillStyle = grad || 'rgb(' + COLOR + ')';
+            ctx.beginPath();
+            var rad = Math.min(hw, hh);
+            if (ctx.roundRect) {
+              ctx.roundRect(p.x - hw, p.y - hh, hw * 2, hh * 2, rad);
+            } else {
+              ctx.arc(p.x, p.y, hw, 0, Math.PI * 2);
+            }
+            ctx.fill();
+          }
+        }
+
+        function drawStatic() {
+          // reduced-motion / no-rAF fallback: the resting row from the cover
+          if (!W) return;
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, W, H);
+          var R = W / (COUNT * 2), ground = H - R * 0.62;
+          ctx.fillStyle = 'rgb(' + COLOR + ')';
+          for (var i = 0; i < COUNT; i++) {
+            ctx.beginPath();
+            ctx.arc(R + i * R * 2, ground, R, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        if (!resize()) {
+          // laid out later (e.g. font load) — try again on the next frame
+          requestAnimationFrame(function () { resize(); });
+        }
+        cv.classList.add('is-live');
+
+        if (!motionOK) { drawStatic(); return; }
+
+        var visible = true;
+        if ('IntersectionObserver' in window) {
+          visible = false;
+          new IntersectionObserver(function (entries) {
+            visible = entries[0].isIntersecting;
+          }, { rootMargin: '120px' }).observe(cv);
+        }
+
+        var lastW = 0, lastH = 0;
+        addTicker(function () {
+          if (!visible) return;
+          var r = cv.getBoundingClientRect();
+          if (Math.abs(r.width - lastW) > 1 || Math.abs(r.height - lastH) > 1) {
+            if (resize()) { lastW = r.width; lastH = r.height; }
+          }
+          if (W && H) draw(performance.now());
+        });
+      });
+    });
+
     safe('columnDrift', function () {
       if (!motionOK || !fine) return;
       var grid = $('[data-drift-grid]');
