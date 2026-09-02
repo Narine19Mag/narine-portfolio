@@ -570,6 +570,10 @@
 
         if (!motionOK) { drawStatic(); return; }
 
+        // paint one frame immediately so the stage is never an empty box,
+        // even if rAF is throttled (background tab) before the ticker runs
+        if (W && H) safe('ballFirstFrame', function () { draw(performance.now()); });
+
         var visible = true;
         if ('IntersectionObserver' in window) {
           visible = false;
