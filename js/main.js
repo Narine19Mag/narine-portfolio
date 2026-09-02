@@ -455,46 +455,32 @@
         }
 
         // --- path geometry -------------------------------------------------
-        // segment 0: the big arc (left -> right, apex near the top)
-        // segments 1..3: decaying bounces travelling right -> left
-        var ARC = 0.52;                        // share of the lap spent in the big arc
-        var HOPS = [0.20, 0.088, 0.036];       // hop heights as a share of usable height
-        var hopDur = [], hopSum = 0;
-        HOPS.forEach(function (h) { var d = Math.sqrt(h); hopDur.push(d); hopSum += d; });
-        hopDur = hopDur.map(function (d) { return d / hopSum; });
+        // A wave travels through the resting row: each ball throws itself up
+        // in a full arc, lands, settles with two decaying hops, then waits
+        // its turn again. Neighbours are offset by one slot of the cycle, so
+        // the airborne balls read as an arc sweeping across the frame.
+        var FLY  = 0.46;      // share of the cycle spent in the air
+        var SET1 = 0.055;     // first settle hop
+        var SET2 = 0.032;     // second settle hop
+        var impacts = [FLY, FLY + SET1, FLY + SET1 + SET2, 1];
 
-        // impact times within the lap (u in 0..1), used for the squash pulse
-        var impacts = [ARC];
-        (function () {
-          var acc = ARC;
-          for (var i = 0; i < hopDur.length; i++) {
-            acc += hopDur[i] * (1 - ARC);
-            impacts.push(acc);
-          }
-        })();
-
-        function posAt(u, R, ground, xL, xR) {
+        function yAt(u, R, ground) {
           u = u - Math.floor(u);
-          var x, y;
-          if (u < ARC) {
-            var s = u / ARC;
-            x = xL + (xR - xL) * s;
-            y = ground - 4 * (H * 0.74 - R) * s * (1 - s);
-          } else {
-            var s2 = (u - ARC) / (1 - ARC);
-            x = xR + (xL - xR) * s2;
-            var acc = 0, hi = 0, local = 0;
-            for (var i = 0; i < hopDur.length; i++) {
-              if (s2 <= acc + hopDur[i] || i === hopDur.length - 1) {
-                hi = i; local = (s2 - acc) / hopDur[i];
-                break;
-              }
-              acc += hopDur[i];
-            }
-            local = clamp(local, 0, 1);
-            y = ground - 4 * (HOPS[hi] * H) * local * (1 - local);
+          var apex = (ground - R) * 0.86, s;
+          if (u < FLY) {
+            s = u / FLY;
+            return ground - 4 * apex * s * (1 - s);
           }
-          return { x: x, y: y };
+          var v = u - FLY;
+          if (v < SET1) {
+            s = v / SET1;
+            return ground - 4 * (apex * 0.085) * s * (1 - s);
+          }
+          if (v < SET1 + SET2) {
+            s = (v - SET1) / SET2;
+            return ground - 4 * (apex * 0.028) * s * (1 - s);
+          }
+          return ground;
         }
 
         function draw(now) {
@@ -504,20 +490,18 @@
 
           var R      = W / (COUNT * 2);          // balls exactly fill the width in a row
           var ground = H - R * 0.62;             // resting centre, slightly cropped by the frame
-          var xL     = R;
-          var xR     = W - R;
           var t      = now / 1000;
 
           for (var i = 0; i < COUNT; i++) {
-            var u  = (t / PERIOD) + i / COUNT;
-            var p  = posAt(u, R, ground, xL, xR);
+            var u  = (t / PERIOD) - i / COUNT;   // wave travels left to right
+            var x  = R + i * 2 * R;
+            var y  = yAt(u, R, ground);
             var dt = 0.016 / PERIOD;
-            var pN = posAt(u + dt, R, ground, xL, xR);
-            var vy = (pN.y - p.y) / 0.016;       // px per second
+            var vy = (yAt(u + dt, R, ground) - y) / 0.016;   // px per second
 
             // stretch with vertical speed
-            var speed   = Math.min(Math.abs(vy) / (H * 2.1), 1);
-            var stretch = 1 + speed * 0.95;
+            var speed   = Math.min(Math.abs(vy) / (H * 2.4), 1);
+            var stretch = 1 + speed * 0.9;
 
             // squash pulse near each floor contact
             var lap = u - Math.floor(u), imp = 1;
@@ -526,11 +510,12 @@
               d = Math.min(d, 1 - d) * PERIOD;   // seconds to nearest impact
               imp = Math.min(imp, d);
             }
-            var squash = Math.exp(-(imp / 0.075) * (imp / 0.075));
+            var squash = Math.exp(-(imp / 0.06) * (imp / 0.06));
 
-            var sy = stretch * (1 - squash) + 0.66 * squash;
-            var sx = 1 / Math.pow(sy, 0.62);
+            var sy = stretch * (1 - squash) + 0.7 * squash;
+            var sx = 1 / Math.pow(sy, 0.6);
 
+            var p = { x: x, y: y };
             var hw = R * sx, hh = R * sy;
 
             // gradient trail on the tail end when stretched
