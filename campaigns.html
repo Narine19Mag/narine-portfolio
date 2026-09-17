@@ -57,8 +57,9 @@
   .fmt-row img:hover{ transform:translateY(-4px); border-color:rgba(217,255,79,.4); }
   .fmt-wide img{ width:100%; height:auto; }
 
-  /* ---- wide lifecycle banners ---- */
-  .lc-stack{ display:flex; flex-direction:column; gap:16px; }
+  /* ---- wide lifecycle banners — two up, so six 4.4:1 banners don't
+         turn into six screens of scrolling ---- */
+  .lc-stack{ display:grid; grid-template-columns:1fr 1fr; gap:26px 20px; }
   .lc-stack figure{ margin:0; }
   .lc-stack img{
     width:100%; border-radius:5px; display:block; background:#111;
@@ -113,6 +114,7 @@
     .key-row{ grid-template-columns:1fr; }
     .cm-set{ margin-top:78px; }
     .cm-set-head{ flex-direction:column; gap:6px; align-items:flex-start; }
+    .lc-stack{ grid-template-columns:1fr; gap:18px; }
     .fmt-row{ --h:auto !important; }
     .fmt-row img{ height:auto; width:100%; }
     .carousel img{ height:300px; }
