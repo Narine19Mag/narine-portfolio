@@ -474,6 +474,45 @@ html.js-motion .fade.in{ opacity:1; }
   width:100%; height:100%; object-fit:cover;
 }
 
+/* ---------- horizontal marquee (looping asset rows) ----------
+   The track holds the set TWICE and travels exactly -50%, so the
+   loop is seamless. Spacing uses margin-right, not gap: `gap` adds
+   one extra space across the duplicate seam and makes the loop jump.
+   Pure CSS — no JS dependency, so the row is never blank.          */
+.mq{
+  position:relative; overflow:hidden;
+  --mq-h:400px; --mq-gap:20px; --mq-dur:60s;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.mq-track{
+  display:flex; width:max-content;
+  animation:mq-left var(--mq-dur) linear infinite;
+}
+.mq[data-dir="right"] .mq-track{ animation-name:mq-right; }
+.mq-track img{
+  height:var(--mq-h); width:auto; flex-shrink:0; display:block;
+  margin-right:var(--mq-gap); border-radius:6px; background:#111;
+  transition:transform .5s var(--ease);
+}
+.mq-track img:hover{ transform:translateY(-8px); }
+.mq:hover .mq-track{ animation-play-state:paused; }
+@keyframes mq-left{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+@keyframes mq-right{
+  from{ transform:translate3d(-50%,0,0); }
+  to  { transform:translate3d(0,0,0); }
+}
+@media(max-width:900px){
+  .mq{ --mq-h:260px; --mq-gap:14px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .mq{ overflow-x:auto; -webkit-mask-image:none; mask-image:none; }
+  .mq-track{ animation:none; }
+}
+
 /* canvas ball loop — sits over the static cover, which stays as the
    no-JS / reduced-motion fallback underneath */
 .ball-canvas{
