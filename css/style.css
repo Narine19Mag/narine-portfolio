@@ -522,8 +522,11 @@ html.js-motion .fade.in{ opacity:1; }
   from{ transform:translate3d(-50%,0,0); }
   to  { transform:translate3d(0,0,0); }
 }
+/* wide (16:9) sets sit shorter than the 4:5 sets so the rows feel even */
+.mq-wide{ --mq-h:300px; }
 @media(max-width:900px){
   .mq{ --mq-h:260px; --mq-gap:14px; }
+  .mq-wide{ --mq-h:190px; }
 }
 @media (prefers-reduced-motion: reduce){
   .mq{ overflow-x:auto; -webkit-mask-image:none; mask-image:none; }
