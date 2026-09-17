@@ -498,22 +498,9 @@ html.js-motion .fade.in{ opacity:1; }
 .mq-track img:hover{ transform:translateY(-8px); }
 .mq:hover .mq-track{ animation-play-state:paused; }
 
-/* dynamic placement — every item keeps the SAME size (varying scale on
-   identical ratios just reads as a mistake); only the vertical position
-   shifts. Offsets are per-item (--y in the markup) rather than nth-child,
-   so the duplicated half carries identical values and the loop seam stays
-   invisible whatever the set size. --k tones the effect down on mobile. */
-.mq-dyn{ --mq-h:380px; --k:1; padding:60px 0; }
-.mq-dyn .mq-track{ align-items:center; }
-.mq-dyn .mq-track img{
-  transform:translateY(calc(var(--y,0px) * var(--k)));
-}
-.mq-dyn .mq-track img:hover{
-  transform:translateY(calc(var(--y,0px) * var(--k) - 14px));
-}
-@media(max-width:900px){
-  .mq-dyn{ --mq-h:260px; --k:.5; padding:36px 0; }
-}
+/* (a staggered/scaled variant lived here — removed: on sets that share one
+   aspect ratio, varying size or baseline just reads as a mistake. Every row
+   is flat and evenly aligned.) */
 @keyframes mq-left{
   from{ transform:translate3d(0,0,0); }
   to  { transform:translate3d(-50%,0,0); }
