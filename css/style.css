@@ -498,21 +498,21 @@ html.js-motion .fade.in{ opacity:1; }
 .mq-track img:hover{ transform:translateY(-8px); }
 .mq:hover .mq-track{ animation-play-state:paused; }
 
-/* dynamic placement — items sit at varied heights and sizes instead of
-   one flat line. Offsets are per-item (--y/--s set in the markup) rather
-   than nth-child, so the duplicated half carries identical values and the
-   loop seam stays invisible whatever the set size. --k scales the whole
-   effect down on small screens. */
-.mq-dyn{ --mq-h:340px; --k:1; padding:74px 0; }
+/* dynamic placement — every item keeps the SAME size (varying scale on
+   identical ratios just reads as a mistake); only the vertical position
+   shifts. Offsets are per-item (--y in the markup) rather than nth-child,
+   so the duplicated half carries identical values and the loop seam stays
+   invisible whatever the set size. --k tones the effect down on mobile. */
+.mq-dyn{ --mq-h:380px; --k:1; padding:60px 0; }
 .mq-dyn .mq-track{ align-items:center; }
 .mq-dyn .mq-track img{
-  transform:translateY(calc(var(--y,0px) * var(--k))) scale(var(--s,1));
+  transform:translateY(calc(var(--y,0px) * var(--k)));
 }
 .mq-dyn .mq-track img:hover{
-  transform:translateY(calc(var(--y,0px) * var(--k) - 30px)) scale(calc(var(--s,1) * 1.05));
+  transform:translateY(calc(var(--y,0px) * var(--k) - 14px));
 }
 @media(max-width:900px){
-  .mq-dyn{ --mq-h:230px; --k:.55; padding:46px 0; }
+  .mq-dyn{ --mq-h:260px; --k:.5; padding:36px 0; }
 }
 @keyframes mq-left{
   from{ transform:translate3d(0,0,0); }
