@@ -11,6 +11,12 @@
   .fx-card{ background:#131019; border:1px solid rgba(124,58,237,.25); border-radius:10px; padding:28px; }
   .fx-phone{ background:#0f0c17; border:1px solid rgba(124,58,237,.3); border-radius:22px; padding:18px; aspect-ratio:9/16; display:flex; flex-direction:column; gap:10px; }
 
+  /* relaunch key visual under the stat row. No panel, no border — the art
+     already carries its own dark band and the phone bleeds past it. */
+  .fx-banner{ margin:72px 0 0; }
+  .fx-banner img{ width:100%; height:auto; display:block; }
+  @media(max-width:900px){ .fx-banner{ margin-top:48px; } }
+
   .fx-ui-group{ margin-top:40px; }
   .fx-ui-group:first-child{ margin-top:0; }
   .fx-ui-label{ font-size:11px; color:#8b7fae; text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
@@ -53,6 +59,17 @@
       <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">3</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">Languages — EN / ES / RU</div></div>
       <div><div style="font-size:32px; font-family:'Space Grotesk',sans-serif;">$273B</div><div style="color:#8b7fae; font-size:13px; text-transform:uppercase; letter-spacing:.06em;">LATAM market sized in pitch deck</div></div>
     </div>
+
+    <!-- relaunch key visual — transparent PNG/WebP, so the phone reads as
+         floating off the dark band rather than boxed inside a panel -->
+    <figure class="fx-banner reveal in">
+      <picture>
+        <source srcset="images/freedx-newlook-banner.webp" type="image/webp">
+        <img src="images/freedx-newlook-banner.png"
+             alt="Freedx got a new look — relaunch key visual with the redesigned trading app"
+             width="2000" height="1066" decoding="async">
+      </picture>
+    </figure>
   </div>
 </header>
 
