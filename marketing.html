@@ -4,47 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iGaming Banners &amp; Landing Pages — Narine Maghakyan</title>
+<meta name="description" content="iGaming banner systems, campaign visuals and landing pages by Narine Maghakyan — built for Risk.inc, Luks Casino and 1King Casino.">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* ---- iGaming project sections ---- */
-  .mkt-block{ margin-top:64px; }
-  .mkt-block:first-child{ margin-top:0; }
-  .mkt-label{ font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin-bottom:18px; font-family:'Space Grotesk',sans-serif; }
-  .mkt-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
-  .mkt-head h2{ font-size:clamp(26px,3.6vw,46px); max-width:680px; }
-  .mkt-desc{ color:var(--text-dim); font-size:16px; max-width:640px; margin-top:20px; font-family:'Space Grotesk',sans-serif; font-weight:300; line-height:1.7; }
+  /* ============================================================
+     iGAMING — chapter-flood layout
+     Each client owns a full-bleed colour chapter so three clashing
+     palettes read as structure instead of noise. Colours are sampled
+     from the artwork itself (--c-deep / --c-accent per chapter).
+     ============================================================ */
 
-  .mkt-phones-row{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:24px; align-items:stretch; }
-  .mkt-phones-row img{ width:100%; height:100%; min-height:360px; object-fit:cover; object-position:top center; border-radius:10px; border:1px solid var(--line); display:block; }
-  @media(max-width:560px){ .mkt-phones-row img{ min-height:300px; } }
-  @media(max-width:560px){ .mkt-phones-row{ grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:14px; } }
+  /* full-bleed helper. 100vw includes the scrollbar and would cause
+     horizontal overflow, so the page root already clips overflow-x;
+     these use vw and stay inside that guard. */
+  .ig-bleed{
+    position:relative; left:50%; right:50%;
+    margin-left:-50vw; margin-right:-50vw;
+    width:100vw; max-width:100vw;
+  }
 
-  .mkt-panel-row{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px; }
-  .mkt-panel-row img{ width:100%; border-radius:10px; border:1px solid var(--line); display:block; }
+  /* ---------- hero ---------- */
+  .ig-hero{ position:relative; min-height:86vh; display:flex; align-items:flex-end; overflow:hidden; }
+  .ig-hero-art{ position:absolute; inset:0; }
+  .ig-hero-art img{ width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .ig-hero-art::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(10,10,11,.74) 0%, rgba(10,10,11,.28) 38%, rgba(10,10,11,.94) 100%);
+  }
+  .ig-hero-inner{ position:relative; width:100%; padding:0 0 72px; }
+  .ig-kicker{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.14em;
+    text-transform:uppercase; color:#e9d9ff; margin-bottom:18px;
+  }
+  .ig-hero h1{
+    font-size:clamp(40px,8.2vw,112px); line-height:.92; letter-spacing:-0.035em; max-width:14ch;
+  }
+  .ig-hero p.lead{
+    color:#d9cdf2; font-size:17px; line-height:1.65; max-width:620px; margin-top:26px;
+    font-family:'Space Grotesk',sans-serif; font-weight:300;
+  }
+  .ig-stats{ display:flex; gap:48px; flex-wrap:wrap; margin-top:44px; }
+  .ig-stats b{ display:block; font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:500; }
+  .ig-stats span{
+    font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase;
+    letter-spacing:.1em; color:#b9a9d8;
+  }
 
-  .mkt-stack{ display:flex; flex-direction:column; gap:12px; }
-  .mkt-stack img{ width:100%; border-radius:10px; display:block; }
-  .mkt-full img{ width:100%; border-radius:10px; display:block; }
+  /* ---------- chapter ---------- */
+  .ig-ch{
+    --c-deep:#1c0038; --c-accent:#e0558c;
+    position:relative; padding:120px 0 128px;
+    background:
+      radial-gradient(120% 90% at 82% 8%, color-mix(in srgb, var(--c-accent) 26%, transparent), transparent 62%),
+      linear-gradient(180deg, var(--c-deep) 0%, color-mix(in srgb, var(--c-deep) 62%, #07070a) 100%);
+  }
+  /* diagonal cut where one chapter meets the next */
+  .ig-ch::before{
+    content:''; position:absolute; left:0; right:0; top:-1px; height:96px;
+    background:inherit; clip-path:polygon(0 0, 100% 100%, 100% 0);
+    transform:translateY(-95px); pointer-events:none;
+  }
+  .ig-ch-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:28px; flex-wrap:wrap; }
+  .ig-num{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--c-accent); margin-bottom:12px;
+  }
+  .ig-ch h2{
+    font-size:clamp(38px,7.6vw,104px); line-height:.9; letter-spacing:-0.04em; text-transform:uppercase;
+  }
+  .ig-ch-meta{
+    font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase;
+    letter-spacing:.1em; color:#cdbde8; text-align:right; line-height:1.9;
+  }
+  .ig-note{
+    color:#d6c9ee; font-size:16px; line-height:1.75; max-width:640px; margin-top:26px;
+    font-family:'Space Grotesk',sans-serif; font-weight:300;
+  }
+  .ig-sub{
+    font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--c-accent);
+    margin:64px 0 20px; display:flex; align-items:center; gap:14px;
+  }
+  .ig-sub::after{ content:''; flex:1; height:1px; background:color-mix(in srgb, var(--c-accent) 35%, transparent); }
 
-  .mkt-banner-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px; }
-  .mkt-banner-grid img{ width:100%; aspect-ratio:2/1; object-fit:cover; border-radius:10px; display:block; }
-  .mkt-banner-grid-3{ grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); }
-  .mkt-banner-grid-4{ grid-template-columns:repeat(4, 1fr); }
-  @media(max-width:900px){ .mkt-banner-grid-4{ grid-template-columns:repeat(2, 1fr); } }
-  @media(max-width:560px){ .mkt-banner-grid{ grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px; } .mkt-banner-grid-4{ grid-template-columns:1fr 1fr; } }
+  /* ---------- landing pages: browser chrome that scrolls on hover ---------- */
+  .ig-pages{ display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:26px; }
+  .ig-page{ cursor:pointer; }
+  .ig-shell{
+    border-radius:10px; overflow:hidden; background:#fff;
+    border:1px solid color-mix(in srgb, var(--c-accent) 30%, transparent);
+    transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  }
+  .ig-page:hover .ig-shell{
+    transform:translateY(-8px); box-shadow:0 26px 60px rgba(0,0,0,.6); border-color:var(--c-accent);
+  }
+  .ig-bar{
+    display:flex; align-items:center; gap:6px; padding:9px 12px;
+    background:#17141f; border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .ig-bar i{ width:8px; height:8px; border-radius:50%; background:#3c3450; display:block; }
+  .ig-bar em{
+    flex:1; height:16px; border-radius:8px; background:#221d2e; margin-left:8px;
+    font-style:normal; font-size:9px; color:#6f6388; display:flex; align-items:center;
+    padding:0 9px; font-family:'Space Grotesk',sans-serif; letter-spacing:.04em;
+  }
+  .ig-view{ position:relative; height:420px; overflow:hidden; background:#fff; }
+  .ig-view img{ width:100%; height:auto; display:block; transition:transform 1.1s var(--ease); }
+  .ig-page:hover .ig-view img{ transition:transform 11s linear; transform:translateY(calc(420px - 100%)); }
+  .ig-hint{
+    position:absolute; right:10px; bottom:10px; z-index:2;
+    font-family:'Space Grotesk',sans-serif; font-size:9px; letter-spacing:.1em;
+    text-transform:uppercase; color:#fff; background:rgba(0,0,0,.62);
+    border-radius:999px; padding:5px 11px; transition:opacity .35s var(--ease);
+  }
+  .ig-page:hover .ig-hint{ opacity:0; }
+  .ig-cap{
+    display:flex; justify-content:space-between; gap:12px; margin-top:11px;
+    font-family:'Space Grotesk',sans-serif; font-size:10px;
+    text-transform:uppercase; letter-spacing:.09em; color:#b4a4d2;
+  }
+  .ig-cap b{ color:#efe7ff; font-weight:500; }
 
-  .mkt-fullpage-row{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; align-items:start; }
-  .mkt-fullpage-row img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--line); display:block; }
-  .mkt-fullpage-row-4{ grid-template-columns:repeat(4, 1fr); }
-  @media(max-width:900px){ .mkt-fullpage-row{ grid-template-columns:1fr 1fr; } }
-  @media(max-width:560px){ .mkt-fullpage-row{ grid-template-columns:1fr; } }
+  /* ---------- wide strips ---------- */
+  .ig-strips{ display:flex; flex-direction:column; gap:18px; }
+  .ig-strips img{
+    width:100%; height:auto; display:block; border-radius:8px;
+    border:1px solid color-mix(in srgb, var(--c-accent) 26%, transparent);
+    transition:transform .45s var(--ease);
+  }
+  .ig-strips img:hover{ transform:translateY(-4px); }
 
-  .mkt-hero-img{ border-radius:10px; overflow:hidden; }
-  .mkt-hero-img img{ width:100%; display:block; }
+  .ig-key{ position:relative; border-radius:12px; overflow:hidden; }
+  .ig-key img{ width:100%; height:auto; display:block; }
 
-  .client-row{ display:grid; grid-template-columns:1fr 2fr; gap:24px; padding:26px 0; border-bottom:1px solid var(--line); align-items:baseline; }
-  .client-row:last-child{ border-bottom:none; }
-  @media(max-width:640px){ .client-row{ grid-template-columns:1fr; gap:8px; } }
+  @media(max-width:900px){
+    .ig-ch{ padding:84px 0 88px; }
+    .ig-ch::before{ height:58px; transform:translateY(-57px); }
+    .ig-ch-head{ flex-direction:column; align-items:flex-start; }
+    .ig-ch-meta{ text-align:left; }
+    .ig-view{ height:300px; }
+    .ig-stats{ gap:28px; }
+    .ig-hero{ min-height:76vh; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ig-page:hover .ig-view img{ transition:none !important; transform:none !important; }
+    .ig-view{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  }
 </style>
 </head>
 <body>
@@ -53,147 +158,223 @@
   <a href="index.html" class="logo">NARINE<span>.</span>M</a>
   <div class="nav-links">
     <a href="index.html">Work</a>
-    <a href="about.html" >About</a>
+    <a href="about.html">About</a>
     <a href="mailto:narinemaghakyan@gmail.com">Contact</a>
   </div>
   <button class="nav-toggle">Menu</button>
 </nav>
 
-<header style="padding-top:160px; padding-bottom:60px;">
-  <div class="wrap">
-    <p class="reveal in" style="text-transform:uppercase; letter-spacing:.14em; font-size:13px; color:var(--text-dim); margin-bottom:20px;">03 — Selected Work</p>
-    <h1 class="reveal in" style="font-size:clamp(36px,7vw,88px); max-width:900px;">iGaming Banners &amp; Landing Pages</h1>
-    <p class="reveal in" style="color:var(--text-dim); font-size:17px; max-width:640px; margin-top:20px;">iGaming banner systems, campaign visuals and landing pages built for global casino and betting brands — Risk.inc, Luks Casino and 1King Casino.</p>
+<!-- ================= HERO ================= -->
+<header class="ig-hero ig-bleed">
+  <div class="ig-hero-art">
+    <img src="images/mkt-igaming-01.jpg" alt="iGaming campaign key art — free spins hero visual" fetchpriority="high">
+  </div>
+  <div class="ig-hero-inner">
+    <div class="wrap">
+      <p class="ig-kicker reveal in">03 — Selected Work</p>
+      <h1 class="reveal in">iGaming Banners &amp; Landing Pages</h1>
+      <p class="lead reveal in">Banner systems that have to win attention in a feed full of competitors — sitewide sliders, bonus campaigns, provider partner art and full landing pages for three casino and betting brands.</p>
+      <div class="ig-stats reveal in">
+        <div><b>3</b><span>Brands</span></div>
+        <div><b>30</b><span>Visuals</span></div>
+        <div><b>7</b><span>Landing pages</span></div>
+        <div><b>300K+</b><span>Customers reached</span></div>
+      </div>
+    </div>
   </div>
 </header>
 
 <!-- ================= 01 — RISK.INC ================= -->
-<section style="border-top:1px solid var(--line);">
+<section class="ig-ch ig-bleed" style="--c-deep:#1c0038; --c-accent:#e0558c; padding-top:132px;">
   <div class="wrap">
-    <div class="section-label reveal">[ 01 ] Risk.inc</div>
-    <div class="mkt-head reveal">
-      <h2>iGaming banner &amp; campaign system</h2>
-      <a href="https://www.behance.net/gallery/232616353/igaming-slider-banner" target="_blank" rel="noopener" class="btn cursor-hover">View on Behance →</a>
+    <div class="ig-ch-head reveal">
+      <div>
+        <div class="ig-num">[ 01 ] Client</div>
+        <h2>Risk.inc</h2>
+      </div>
+      <div class="ig-ch-meta">Sitewide sliders<br>Campaign key art<br>5 brands</div>
     </div>
-    <p class="mkt-desc reveal">Global iGaming group — 300K+ customers, 1000+ employees, 5 leading brands. Sitewide slider banners and campaign visuals built for scale across multiple brands.</p>
+    <p class="ig-note reveal">A global iGaming group — 300K+ customers, 1000+ employees, five brands running off one visual system. Slider banners and campaign art built so a single key visual can be re-cut for every brand in the group without redrawing it.</p>
 
-    <div class="reveal mkt-hero-img" style="margin-top:56px;">
-      <img src="images/mkt-igaming-01.jpg" alt="Risk.inc iGaming campaign key art — character banner with slider visuals blurred in the background">
+    <div class="ig-sub reveal"><b>Campaign key art</b></div>
+    <div class="ig-key reveal">
+      <img src="images/mkt-igaming-01.jpg" alt="Risk.inc campaign key art — free spins slider visual" width="1318" height="1031" decoding="async">
     </div>
   </div>
 </section>
 
 <!-- ================= 02 — LUKS CASINO ================= -->
-<section style="border-top:1px solid var(--line);">
+<section class="ig-ch ig-bleed" style="--c-deep:#2a0046; --c-accent:#f0c45c;">
   <div class="wrap">
-    <div class="section-label reveal">[ 02 ] Luks Casino</div>
-    <div class="mkt-head reveal">
-      <h2>Site banners, promo campaigns &amp; landing pages</h2>
-      <a href="https://lukseregli.com/" target="_blank" rel="noopener" class="btn cursor-hover">Visit Live Site →</a>
+    <div class="ig-ch-head reveal">
+      <div>
+        <div class="ig-num">[ 02 ] Client</div>
+        <h2>Luks Casino</h2>
+      </div>
+      <div class="ig-ch-meta">Turkish market<br>Banners &amp; landing pages<br>App security UX</div>
     </div>
-    <p class="mkt-desc reveal">Turkish-market iGaming brand — sitewide banner system, bonus campaigns and landing pages, including in-app security messaging, a referral/loyalty program, and a full slider &amp; email banner set.</p>
+    <p class="ig-note reveal">Sitewide banner system, bonus campaigns and landing pages for a Turkish-market brand — including in-app security messaging and a referral and loyalty programme, all carried by the same gold-on-violet language.</p>
 
-    <div class="mkt-block reveal" style="margin-top:56px;">
-      <p class="mkt-label">App &amp; Security UX</p>
-      <div class="reveal-stagger mkt-fullpage-row">
-        <img src="images/mkt-igaming-02.jpg" alt="Luks Casino app — security notice, official app download and secure access links">
-        <img src="images/mkt-igaming-03.jpg" alt="Luks Casino app — trial bonus onboarding, 500 TRY sign-up flow">
-        <img src="images/mkt-igaming-04.jpg" alt="Luks Casino refer-a-friend and loyalty program page">
+    <div class="ig-sub reveal"><b>Landing pages</b> — hover to scroll</div>
+    <div class="ig-pages">
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>lukscasino — security</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-02.jpg" alt="Luks Casino app and security landing page" width="1032" height="5688" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>App &amp; security</b><span>Full page</span></div>
+      </div>
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>lukscasino — loyalty</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-03.jpg" alt="Luks Casino referral and loyalty landing page" width="1032" height="3258" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>Referral &amp; loyalty</b><span>Full page</span></div>
+      </div>
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>lukscasino — bonus</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-04.jpg" alt="Luks Casino bonus campaign landing page" width="1032" height="7455" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>Bonus campaign</b><span>Full page</span></div>
       </div>
     </div>
 
-    <div class="mkt-block reveal">
-      <p class="mkt-label">Banner &amp; Slider Campaign Set</p>
-      <div class="reveal-stagger mkt-banner-grid">
-        <img src="images/mkt-igaming-05.jpg" alt="Luks Casino popular slots promo banner">
-        <img src="images/mkt-igaming-06.jpg" alt="Luks Casino free spins campaign banner">
-        <img src="images/mkt-igaming-07.jpg" alt="Luks Casino popular slots promo banner, alternate set">
-        <img src="images/mkt-igaming-08.jpg" alt="Luks Casino Playson 300.000 TL bonus banner">
-        <img src="images/mkt-igaming-09.jpg" alt="Luks Casino 150.000 TL bonus banner">
-        <img src="images/mkt-igaming-10.jpg" alt="Luks Casino Sweet Bonanza free spins banner">
-        <img src="images/mkt-igaming-11.jpg" alt="Luks Casino jackpot win announcement banner — Sweet Bonanza 1000">
-        <img src="images/mkt-igaming-12.jpg" alt="Luks Casino 50% bonus campaign banner">
-      </div>
+    <div class="ig-sub reveal"><b>Slider &amp; campaign banners</b></div>
+  </div>
+
+  <div class="mq reveal" style="--mq-dur:42s; --mq-h:230px;">
+    <div class="mq-track">
+      <img src="images/mkt-igaming-05.jpg" alt="Luks Casino popular slots slider banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-06.jpg" alt="Luks Casino campaign banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-07.jpg" alt="Luks Casino campaign banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-08.jpg" alt="Luks Casino campaign banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-09.jpg" alt="Luks Casino campaign banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-10.jpg" alt="Luks Casino campaign banner" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-05.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-06.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-07.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-08.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-09.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+      <img src="images/mkt-igaming-10.jpg" alt="" aria-hidden="true" width="700" height="350" decoding="async">
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ig-sub reveal"><b>Email &amp; wide placements</b></div>
+    <div class="ig-strips reveal">
+      <img src="images/mkt-igaming-11.jpg" alt="Luks Casino wide email banner" width="1141" height="366" loading="lazy" decoding="async">
+      <img src="images/mkt-igaming-12.jpg" alt="Luks Casino wide email banner" width="1140" height="365" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- ================= 04 — 1KING CASINO ================= -->
-<section style="border-top:1px solid var(--line);">
+<!-- ================= 03 — 1KING CASINO ================= -->
+<section class="ig-ch ig-bleed" style="--c-deep:#5a0000; --c-accent:#ff5a4a;">
   <div class="wrap">
-    <div class="section-label reveal">[ 03 ] 1King Casino</div>
-    <div class="mkt-head reveal">
-      <h2>Brand campaign, banner system &amp; landing pages</h2>
-      <a href="https://caosfera.it/en/" target="_blank" rel="noopener" class="btn cursor-hover">Visit Live Site →</a>
+    <div class="ig-ch-head reveal">
+      <div>
+        <div class="ig-num">[ 03 ] Client</div>
+        <h2>1King Casino</h2>
+      </div>
+      <div class="ig-ch-meta">Royal identity<br>Provider partner art<br>Deposit &amp; cashback UX</div>
     </div>
-    <p class="mkt-desc reveal">iGaming brand — hero campaign art, promo banner grid and landing page design, with a royal-themed identity carried through app security messaging, deposit/cashback UX, provider partner banners and slider visuals.</p>
+    <p class="ig-note reveal">A royal-themed identity carried from hero campaign art through app security messaging, deposit and cashback flows, provider partner banners and the slider set — crown, crest and deep red holding it together across every placement.</p>
 
-    <div class="mkt-block reveal">
-      <p class="mkt-label">App &amp; Security UX</p>
-      <div class="reveal-stagger mkt-fullpage-row mkt-fullpage-row-4">
-        <img src="images/mkt-igaming-13.jpg" alt="1King Casino app — security notice, official app and secure access links">
-        <img src="images/mkt-igaming-14.jpg" alt="1King Casino Android APK install walkthrough, step by step">
-        <img src="images/mkt-igaming-15.jpg" alt="1King Casino cashback conditions and deposit tier table">
-        <img src="images/mkt-igaming-16.jpg" alt="1King Casino trial bonus onboarding, 500 TRY sign-up flow">
+    <div class="ig-sub reveal"><b>Landing pages</b> — hover to scroll</div>
+    <div class="ig-pages">
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>1king — security</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-13.jpg" alt="1King Casino app and security landing page" width="688" height="4264" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>App &amp; security</b><span>Full page</span></div>
+      </div>
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>1king — deposit</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-14.jpg" alt="1King Casino deposit flow landing page" width="688" height="3728" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>Deposit flow</b><span>Full page</span></div>
+      </div>
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>1king — cashback</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-15.jpg" alt="1King Casino cashback landing page" width="688" height="2324" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>Cashback</b><span>Full page</span></div>
+      </div>
+      <div class="ig-page reveal">
+        <div class="ig-shell">
+          <div class="ig-bar"><i></i><i></i><i></i><em>1king — promo</em></div>
+          <div class="ig-view">
+            <img src="images/mkt-igaming-16.jpg" alt="1King Casino promo landing page" width="688" height="2160" loading="lazy" decoding="async">
+            <span class="ig-hint">Hover to scroll</span>
+          </div>
+        </div>
+        <div class="ig-cap"><b>Promo page</b><span>Full page</span></div>
       </div>
     </div>
 
-    <div class="mkt-block reveal">
-      <p class="mkt-label">Provider Partner Banners</p>
-      <div class="reveal-stagger mkt-fullpage-row">
-        <img src="images/mkt-igaming-17.jpg" alt="1King Casino provider banner — Pragmatic Play, King Midas, Flaming Hot">
-        <img src="images/mkt-igaming-18.jpg" alt="1King Casino provider banner — Playson, golden eagle theme">
-        <img src="images/mkt-igaming-19.jpg" alt="1King Casino provider banner — Pateplay, pharaoh theme">
-      </div>
+    <div class="ig-sub reveal"><b>Provider partner banners</b></div>
+    <div class="ig-strips reveal">
+      <img src="images/mkt-igaming-17.jpg" alt="1King Casino provider partner banner" width="1400" height="443" loading="lazy" decoding="async">
+      <img src="images/mkt-igaming-18.jpg" alt="1King Casino provider partner banner" width="1400" height="447" loading="lazy" decoding="async">
+      <img src="images/mkt-igaming-19.jpg" alt="1King Casino provider partner banner" width="955" height="303" loading="lazy" decoding="async">
     </div>
 
-    <div class="mkt-block reveal">
-      <p class="mkt-label">Slot Preview Cards</p>
-      <div class="reveal-stagger mkt-banner-grid mkt-banner-grid-3">
-        <img src="images/mkt-igaming-20.jpg" alt="1King Casino slot game preview cards — set 1">
-        <img src="images/mkt-igaming-21.jpg" alt="1King Casino slot game preview cards — set 2">
-        <img src="images/mkt-igaming-22.jpg" alt="1King Casino slot game preview cards — set 3">
-      </div>
-    </div>
+    <div class="ig-sub reveal"><b>Slider &amp; promo visuals</b></div>
+  </div>
 
-    <div class="mkt-block reveal">
-      <p class="mkt-label">Slider &amp; Promo Visuals</p>
-      <div class="reveal-stagger mkt-banner-grid mkt-banner-grid-4">
-        <img src="images/mkt-igaming-23.jpg" alt="1King Casino 100 free spins Sweet Bonanza promo banner">
-        <img src="images/mkt-igaming-24.jpg" alt="1King Casino free spins promo banner">
-        <img src="images/mkt-igaming-25.jpg" alt="1King Casino jackpot win announcement banner — Sweet Bonanza 1000">
-        <img src="images/mkt-igaming-26.jpg" alt="1King Casino wheel of fortune promo banner">
-        <img src="images/mkt-igaming-27.jpg" alt="1King Casino 250 TL bonus promo banner">
-        <img src="images/mkt-igaming-28.jpg" alt="1King Casino crowned player free spins promo banner">
-        <img src="images/mkt-igaming-29.jpg" alt="1King Casino jackpot win announcement banner — 4,140,000 TL">
-        <img src="images/mkt-igaming-30.jpg" alt="1King Casino VIP Zone sign-up banner">
-      </div>
+  <div class="mq reveal" data-dir="right" style="--mq-dur:56s; --mq-h:200px;">
+    <div class="mq-track">
+      <img src="images/mkt-igaming-20.jpg" alt="1King Casino slider visual" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-23.jpg" alt="1King Casino promo banner" width="468" height="240" decoding="async">
+      <img src="images/mkt-igaming-21.jpg" alt="1King Casino slider visual" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-24.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-22.jpg" alt="1King Casino slider visual" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-25.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-26.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-27.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-28.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-29.jpg" alt="1King Casino promo banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-30.jpg" alt="1King Casino VIP zone banner" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-20.jpg" alt="" aria-hidden="true" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-23.jpg" alt="" aria-hidden="true" width="468" height="240" decoding="async">
+      <img src="images/mkt-igaming-21.jpg" alt="" aria-hidden="true" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-24.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-22.jpg" alt="" aria-hidden="true" width="688" height="344" decoding="async">
+      <img src="images/mkt-igaming-25.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-26.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-27.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-28.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-29.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+      <img src="images/mkt-igaming-30.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- ================= CLIENTS ================= -->
-<section style="border-top:1px solid var(--line); padding-bottom:100px;">
+<section style="padding-top:110px;">
   <div class="wrap">
-    <div class="section-label reveal">Clients</div>
-    <div class="reveal-stagger" style="display:flex; flex-direction:column;">
-
-      <div class="client-row">
-        <a href="https://www.risk.inc/" target="_blank" rel="noopener" class="cursor-hover" style="font-size:18px; text-decoration:underline;">Risk.inc</a>
-        <p style="color:var(--text-dim); font-size:14px;">Global iGaming group — 300K+ customers, 1000+ employees, 5 leading brands.</p>
-      </div>
-
-      <div class="client-row">
-        <a href="https://lukseregli.com/" target="_blank" rel="noopener" class="cursor-hover" style="font-size:18px; text-decoration:underline;">Luks Casino</a>
-        <p style="color:var(--text-dim); font-size:14px;">Turkish-market iGaming brand — sitewide banner system, bonus campaigns &amp; landing pages.</p>
-      </div>
-
-      <div class="client-row">
-        <a href="https://caosfera.it/en/" target="_blank" rel="noopener" class="cursor-hover" style="font-size:18px; text-decoration:underline;">1King Casino</a>
-        <p style="color:var(--text-dim); font-size:14px;">iGaming brand — hero campaign art, promo banner grid &amp; landing page design.</p>
-      </div>
-
-    </div>
+    <div class="reveal"><a href="index.html" class="btn cursor-hover">← Back to Work</a></div>
   </div>
 </section>
 
