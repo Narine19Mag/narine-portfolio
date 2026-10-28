@@ -129,6 +129,15 @@
   }
   .ig-strips img:hover{ transform:translateY(-4px); }
 
+  /* provider banners: three across at a readable size, not one per screen */
+  .ig-trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:start; }
+  .ig-trio img{
+    width:100%; height:auto; display:block; border-radius:8px;
+    border:1px solid color-mix(in srgb, var(--c-accent) 26%, transparent);
+    transition:transform .45s var(--ease);
+  }
+  .ig-trio img:hover{ transform:translateY(-5px); }
+
   .ig-key{ position:relative; border-radius:12px; overflow:hidden; }
   .ig-key img{ width:100%; height:auto; display:block; }
 
@@ -138,6 +147,7 @@
     .ig-ch-head{ flex-direction:column; align-items:flex-start; }
     .ig-ch-meta{ text-align:left; }
     .ig-view{ height:300px; }
+    .ig-trio{ grid-template-columns:1fr; }
     .ig-stats{ gap:28px; }
     .ig-hero{ min-height:76vh; }
   }
@@ -266,9 +276,22 @@
 
   <div class="wrap">
     <div class="ig-sub reveal"><b>Email &amp; wide placements</b></div>
-    <div class="ig-strips reveal">
-      <img src="images/mkt-igaming-11.jpg" alt="Luks Casino wide email banner" width="1141" height="366" loading="lazy" decoding="async">
-      <img src="images/mkt-igaming-12.jpg" alt="Luks Casino wide email banner" width="1140" height="365" loading="lazy" decoding="async">
+  </div>
+
+  <div class="mq reveal" data-dir="right" style="--mq-dur:58s; --mq-h:190px;">
+    <div class="mq-track">
+      <img src="images/mkt-luks-wide-01-welcome50.jpg" alt="Luks Casino — %50 welcome bonus banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-02-sweet-fs.jpg" alt="Luks Casino — Sweet free spin campaign banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-03-olympus.jpg" alt="Luks Casino — Gates of Olympus free spin banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-04-queen-vip.jpg" alt="Luks Casino — Queen VIP rewards banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-05-happy-reels.jpg" alt="Luks Casino — Playson Happy Reels tournament banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-06-prize-pool.jpg" alt="Luks Casino — 150,000 TRY prize pool banner" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-01-welcome50.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-02-sweet-fs.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-03-olympus.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-04-queen-vip.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-05-happy-reels.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
+      <img src="images/mkt-luks-wide-06-prize-pool.jpg" alt="" aria-hidden="true" width="1600" height="512" decoding="async">
     </div>
   </div>
 </section>
@@ -330,7 +353,7 @@
     </div>
 
     <div class="ig-sub reveal"><b>Provider partner banners</b></div>
-    <div class="ig-strips reveal">
+    <div class="ig-trio reveal">
       <img src="images/mkt-igaming-17.jpg" alt="1King Casino provider partner banner" width="1400" height="443" loading="lazy" decoding="async">
       <img src="images/mkt-igaming-18.jpg" alt="1King Casino provider partner banner" width="1400" height="447" loading="lazy" decoding="async">
       <img src="images/mkt-igaming-19.jpg" alt="1King Casino provider partner banner" width="955" height="303" loading="lazy" decoding="async">
