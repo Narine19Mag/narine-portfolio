@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iGaming Campaigns &amp; Game Design — Narine Maghakyan</title>
-<meta name="description" content="iGaming campaign and game design by Narine Maghakyan — banner systems and landing pages for Risk.inc, Luks Casino and 1King Casino, plus slot game art and UI.">
+<meta name="description" content="iGaming campaign and game design by Narine Maghakyan — banners and landing pages for Risk.inc, Luks Casino and 1King Casino, plus Mysticus and Potion Clash slot game art and UI.">
 <link rel="stylesheet" href="css/style.css">
 <style>
   /* ============================================================
@@ -34,6 +34,7 @@
   .ig-hero h1{
     font-size:clamp(40px,8.2vw,112px); line-height:.92; letter-spacing:-0.035em; max-width:14ch;
   }
+  .ig-hero p.lead b{ color:#fff; font-weight:500; }
   .ig-hero p.lead{
     color:#d9cdf2; font-size:17px; line-height:1.65; max-width:620px; margin-top:26px;
     font-family:'Space Grotesk',sans-serif; font-weight:300;
@@ -132,6 +133,47 @@
   }
   .ig-trio img:hover{ transform:translateY(-5px); }
 
+
+  /* ---------- slot game boards: tall case-study boards that scroll
+       themselves top to bottom. Duration is set per board from its own
+       height so every board travels at the same px/second, and hovering
+       pauses it so you can actually read one. ---------- */
+  .gm-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:26px; align-items:start; }
+  .gm-board{ cursor:pointer; }
+  .gm-shell{
+    border-radius:10px; overflow:hidden; background:#0b0714;
+    border:1px solid color-mix(in srgb, var(--c-accent) 32%, transparent);
+    transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  }
+  .gm-board:hover .gm-shell{
+    transform:translateY(-8px); box-shadow:0 28px 64px rgba(0,0,0,.65); border-color:var(--c-accent);
+  }
+  .gm-view{ position:relative; height:var(--gm-h,620px); overflow:hidden; }
+  .gm-view img{ width:100%; height:auto; display:block; animation:gm-roll var(--gm-dur,60s) linear infinite; }
+  .gm-board:hover .gm-view img{ animation-play-state:paused; }
+  @keyframes gm-roll{
+    0%,3%    { transform:translateY(0); }
+    97%,100% { transform:translateY(calc(var(--gm-h,620px) - 100%)); }
+  }
+  .gm-tag{
+    position:absolute; left:0; right:0; bottom:0; z-index:2; pointer-events:none;
+    padding:34px 14px 12px;
+    background:linear-gradient(180deg, transparent, rgba(8,5,14,.88));
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:#cbb9e8;
+  }
+  .gm-cap{
+    display:flex; justify-content:space-between; gap:12px; margin-top:11px;
+    font-family:'Space Grotesk',sans-serif; font-size:10px;
+    text-transform:uppercase; letter-spacing:.09em; color:#b4a4d2;
+  }
+  .gm-cap b{ color:#efe7ff; font-weight:500; }
+  @media(max-width:900px){ .gm-view{ height:420px; } }
+  @media (prefers-reduced-motion: reduce){
+    .gm-view img{ animation:none !important; }
+    .gm-view{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  }
+
   .ig-key{ position:relative; border-radius:12px; overflow:hidden; }
   .ig-key img{ width:100%; height:auto; display:block; }
 
@@ -171,10 +213,10 @@
     <div class="wrap">
       <p class="ig-kicker reveal in">03 — Selected Work</p>
       <h1 class="reveal in">iGaming Campaigns &amp; Game Design</h1>
-      <p class="lead reveal in">Two halves of the same industry — campaign systems that have to win attention for three casino brands, and three slot games designed end to end from character art to interface.</p>
+      <p class="lead reveal in">Campaign systems for <b>Risk.inc</b>, <b>Luks Casino</b> and <b>1King Casino</b> — sitewide sliders, bonus banners and full landing pages. Plus own-product game design: <b>Mysticus</b> and <b>Potion Clash</b>, built from concept and character art through to every interface state.</p>
       <div class="ig-stats reveal in">
-        <div><b>3</b><span>Brands</span></div>
-        <div><b>30</b><span>Visuals</span></div>
+        <div><b>3</b><span>Casino brands</span></div>
+        <div><b>2</b><span>Slot games</span></div>
         <div><b>7</b><span>Landing pages</span></div>
         <div><b>300K+</b><span>Customers reached</span></div>
       </div>
@@ -379,6 +421,43 @@
       <img src="images/mkt-igaming-28.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
       <img src="images/mkt-igaming-29.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
       <img src="images/mkt-igaming-30.jpg" alt="" aria-hidden="true" width="465" height="238" decoding="async">
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= 04 — SLOT GAMES ================= -->
+<section class="ig-ch" style="--c-deep:#2a0a3e; --c-accent:#f060a8;">
+  <div class="wrap">
+    <div class="ig-ch-head reveal">
+      <div>
+        <div class="ig-num">[ 04 ] Products</div>
+        <h2>Slot Games</h2>
+      </div>
+      <div class="ig-ch-meta">Game art direction<br>Symbol &amp; character design<br>Full UI systems</div>
+    </div>
+    <p class="ig-note reveal">Own-product work rather than client campaigns — each game designed end to end, from concept and character illustration through the symbol economy to every interface state. Boards scroll on their own; hover to stop one and read it.</p>
+
+    <div class="ig-sub reveal"><b>Case study boards</b> — hover to pause</div>
+    <div class="gm-grid">
+      <div class="gm-board reveal">
+        <div class="gm-shell">
+          <div class="gm-view" style="--gm-dur:28s;">
+            <img src="images/game-mysticus-board.jpg" alt="Mysticus — slot game design board" width="840" height="4252" loading="lazy" decoding="async">
+            <span class="gm-tag">Hover to pause</span>
+          </div>
+        </div>
+        <div class="gm-cap"><b>Mysticus</b><span>Multiplayer crash game</span></div>
+      </div>
+      <div class="gm-board reveal">
+        <div class="gm-shell">
+          <div class="gm-view" style="--gm-dur:53s;">
+            <img src="images/game-potion-clash-board.jpg" alt="Potion Clash — slot game design board" width="840" height="8032" loading="lazy" decoding="async">
+            <span class="gm-tag">Hover to pause</span>
+          </div>
+        </div>
+        <div class="gm-cap"><b>Potion Clash</b><span>Slot game</span></div>
+      </div>
     </div>
   </div>
 </section>
